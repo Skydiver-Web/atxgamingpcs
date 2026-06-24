@@ -22,6 +22,32 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
+/* NOTICE BANNER */
+.notice-banner {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: var(--yellow); color: #1a1000;
+  display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+  padding: 0.55rem 1rem;
+  font-size: 0.82rem; font-weight: 600; text-align: center; line-height: 1.4;
+}
+.notice-banner .notice-icon { font-size: 0.9rem; flex-shrink: 0; }
+.notice-banner .notice-close {
+  position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);
+  background: none; border: none; cursor: pointer;
+  font-size: 1rem; color: #1a1000; opacity: 0.6; line-height: 1;
+  padding: 4px 6px; border-radius: 4px; transition: opacity 0.2s;
+}
+.notice-banner .notice-close:hover { opacity: 1; }
+body.has-banner { --banner-h: 36px; }
+body.has-banner nav { top: var(--banner-h); }
+body.has-banner .mobile-nav { top: calc(var(--banner-h) + var(--nav-h)); }
+body.has-banner .page-hero { padding-top: calc(var(--banner-h) + var(--nav-h) + 3rem); }
+body.has-banner #hero { padding-top: calc(var(--banner-h) + var(--nav-h) + 4rem); }
+@media (max-width: 600px) {
+  body.has-banner { --banner-h: 52px; }
+  .notice-banner .notice-close { display: none; }
+}
+
 /* NAV */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;

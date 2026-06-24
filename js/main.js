@@ -1,5 +1,28 @@
 // ATX Gaming PCs — Shared JS
 
+// Notice banner
+function dismissBanner() {
+  const banner = document.getElementById('noticeBanner');
+  if (!banner) return;
+  banner.style.transition = 'opacity 0.3s, transform 0.3s';
+  banner.style.opacity = '0';
+  banner.style.transform = 'translateY(-100%)';
+  setTimeout(() => {
+    banner.remove();
+    document.body.classList.remove('has-banner');
+  }, 300);
+  sessionStorage.setItem('noticeDismissed', '1');
+}
+(function () {
+  if (document.getElementById('noticeBanner')) {
+    if (sessionStorage.getItem('noticeDismissed')) {
+      dismissBanner();
+    } else {
+      document.body.classList.add('has-banner');
+    }
+  }
+})();
+
 // Theme
 const toggleBtn = document.getElementById('themeToggle');
 function applyTheme(t) {
