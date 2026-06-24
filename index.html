@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATX Gaming PCs — Austin's Premier Gaming PC Builder</title>
+<style>
+  :root {
+    --bg: #0d0d0f;
+    --bg2: #141418;
+    --bg3: #1c1c22;
+    --card: #1e1e26;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.15);
+    --text: #f0f0f5;
+    --text2: #a0a0b0;
+    --text3: #6a6a7a;
+    --accent: #e84118;
+    --accent2: #ff6b35;
+    --accent-glow: rgba(232,65,24,0.2);
+    --green: #00c96b;
+    --blue: #3b82f6;
+    --yellow: #f59e0b;
+    --nav-h: 72px;
+  }
+  [data-theme="light"] {
+    --bg: #f5f5f7;
+    --bg2: #ffffff;
+    --bg3: #ebebef;
+    --card: #ffffff;
+    --border: rgba(0,0,0,0.08);
+    --border2: rgba(0,0,0,0.18);
+    --text: #111118;
+    --text2: #44445a;
+    --text3: #8888a0;
+    --accent: #cc2200;
+    --accent2: #e84118;
+    --accent-glow: rgba(204,34,0,0.12);
+    --green: #00944e;
+    --blue: #2563eb;
+    --yellow: #d97706;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: var(--nav-h);
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem;
+    backdrop-filter: blur(12px);
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em;
+    text-decoration: none; color: var(--text);
+  }
+  .logo-icon {
+    width: 36px; height: 36px; background: var(--accent);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; align-items: center; gap: 1.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--text2); text-decoration: none; font-size: 0.9rem; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-right { display: flex; align-items: center; gap: 1rem; }
+  .theme-btn {
+    width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border2);
+    background: var(--bg3); color: var(--text); cursor: pointer; font-size: 1rem;
+    display: flex; align-items: center; justify-content: center; transition: background 0.2s;
+  }
+  .theme-btn:hover { background: var(--border); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 0.55rem 1.2rem; border-radius: 8px; font-size: 0.875rem;
+    font-weight: 600; cursor: pointer; text-decoration: none; border: none;
+    transition: opacity 0.2s, transform 0.1s;
+  }
+  .btn:hover { opacity: 0.88; }
+  .btn:active { transform: scale(0.97); }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-ghost { background: transparent; border: 1px solid var(--border2); color: var(--text); }
+  .btn-lg { padding: 0.8rem 1.8rem; font-size: 1rem; border-radius: 10px; }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.5rem;
+  }
+  h2.section-title {
+    font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; letter-spacing: -0.03em;
+    color: var(--text); margin-bottom: 0.75rem;
+  }
+  .section-sub { color: var(--text2); font-size: 1.05rem; margin-bottom: 3rem; max-width: 540px; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    padding-top: calc(var(--nav-h) + 4rem);
+    display: flex; align-items: center;
+    background: var(--bg);
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 60% 40%, var(--accent-glow), transparent 70%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--bg3); border: 1px solid var(--border2);
+    border-radius: 20px; padding: 0.3rem 0.9rem;
+    font-size: 0.8rem; font-weight: 600; color: var(--text2);
+    margin-bottom: 1.5rem;
+  }
+  .hero-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+  h1 {
+    font-size: clamp(2.5rem, 5vw, 3.8rem); font-weight: 900; letter-spacing: -0.04em;
+    line-height: 1.05; color: var(--text); margin-bottom: 1.25rem;
+  }
+  h1 .accent { color: var(--accent); }
+  .hero-desc { font-size: 1.1rem; color: var(--text2); margin-bottom: 2rem; max-width: 480px; }
+  .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .hero-stats { display: flex; gap: 2rem; margin-top: 2.5rem; }
+  .stat { display: flex; flex-direction: column; }
+  .stat-n { font-size: 1.6rem; font-weight: 800; color: var(--text); }
+  .stat-l { font-size: 0.78rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.06em; }
+  .hero-visual {
+    display: flex; justify-content: center; align-items: center;
+  }
+  .pc-card-hero {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 2rem;
+    width: 340px;
+    position: relative;
+  }
+  .pc-card-hero::before {
+    content: '';
+    position: absolute; top: -1px; left: 20px; right: 20px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+  .case-svg {
+    width: 100%; height: 200px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .specs-mini { margin-top: 1rem; display: flex; flex-direction: column; gap: 6px; }
+  .spec-row {
+    display: flex; justify-content: space-between; font-size: 0.82rem;
+    padding: 5px 0; border-bottom: 1px solid var(--border);
+  }
+  .spec-row:last-child { border-bottom: none; }
+  .spec-key { color: var(--text3); }
+  .spec-val { color: var(--text); font-weight: 600; }
+
+  /* PREBUILT */
+  #prebuilt { background: var(--bg2); }
+  .pc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .pc-tier {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .pc-tier:hover { border-color: var(--border2); transform: translateY(-4px); }
+  .pc-tier.featured { border-color: var(--accent); }
+  .tier-header { padding: 1.5rem 1.5rem 1rem; position: relative; }
+  .tier-badge {
+    position: absolute; top: 1rem; right: 1rem;
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 3px 10px; border-radius: 20px;
+  }
+  .badge-entry { background: rgba(0,201,107,0.15); color: var(--green); }
+  .badge-mid { background: rgba(59,130,246,0.15); color: var(--blue); }
+  .badge-pro { background: rgba(232,65,24,0.15); color: var(--accent2); }
+  .tier-name { font-size: 1.1rem; font-weight: 800; margin-bottom: 0.25rem; }
+  .tier-sub { font-size: 0.82rem; color: var(--text3); }
+  .tier-price {
+    font-size: 2.2rem; font-weight: 900; letter-spacing: -0.04em;
+    color: var(--text); padding: 0 1.5rem 1rem;
+  }
+  .tier-price sup { font-size: 1rem; vertical-align: top; margin-top: 6px; color: var(--text2); }
+  .tier-specs { padding: 0 1.5rem; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .tier-spec-row {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 0.85rem; padding: 6px 0; border-bottom: 1px solid var(--border);
+  }
+  .tier-spec-row:last-child { border-bottom: none; }
+  .spec-icon { font-size: 0.9rem; width: 18px; text-align: center; flex-shrink: 0; margin-top: 1px; }
+  .spec-info { flex: 1; }
+  .spec-label { font-weight: 600; color: var(--text); }
+  .spec-detail { color: var(--text3); font-size: 0.78rem; }
+  .tier-footer { padding: 1.25rem 1.5rem; }
+
+  /* BUILDER */
+  #builder { background: var(--bg); }
+  .builder-layout { display: grid; grid-template-columns: 1fr 380px; gap: 2rem; align-items: start; }
+  .parts-list { display: flex; flex-direction: column; gap: 1rem; }
+  .part-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1rem 1.25rem;
+    display: flex; align-items: center; gap: 1rem;
+    transition: border-color 0.2s;
+  }
+  .part-card:hover { border-color: var(--border2); }
+  .part-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: var(--bg3); display: flex; align-items: center;
+    justify-content: center; font-size: 1.3rem; flex-shrink: 0;
+  }
+  .part-info { flex: 1; min-width: 0; }
+  .part-name { font-weight: 700; font-size: 0.9rem; margin-bottom: 2px; }
+  .part-select {
+    width: 100%; padding: 6px 10px; border-radius: 7px;
+    border: 1px solid var(--border2); background: var(--bg3);
+    color: var(--text); font-size: 0.82rem; cursor: pointer;
+    outline: none; transition: border-color 0.2s;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 8px center;
+    padding-right: 28px;
+  }
+  .part-select:focus { border-color: var(--accent); }
+  .part-price {
+    font-size: 0.95rem; font-weight: 700; color: var(--text);
+    min-width: 60px; text-align: right; flex-shrink: 0;
+  }
+  .build-summary {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.5rem; position: sticky; top: 90px;
+  }
+  .summary-title { font-size: 1rem; font-weight: 700; margin-bottom: 1.25rem; }
+  .summary-rows { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1.25rem; }
+  .summary-row {
+    display: flex; justify-content: space-between;
+    font-size: 0.82rem; padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .summary-row:last-child { border-bottom: none; }
+  .summary-label { color: var(--text2); }
+  .summary-val { font-weight: 600; font-size: 0.85rem; }
+  .summary-total {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.75rem 0; border-top: 2px solid var(--border2); margin-bottom: 1rem;
+  }
+  .total-label { font-weight: 700; font-size: 0.9rem; }
+  .total-price { font-size: 1.6rem; font-weight: 900; letter-spacing: -0.03em; color: var(--accent); }
+  .compat-bar {
+    background: var(--bg3); border-radius: 20px; height: 6px;
+    margin-bottom: 0.4rem; overflow: hidden;
+  }
+  .compat-fill {
+    height: 100%; background: var(--green); border-radius: 20px;
+    transition: width 0.4s ease;
+  }
+  .compat-label { font-size: 0.75rem; color: var(--text3); margin-bottom: 1rem; }
+  .compat-issues { font-size: 0.78rem; color: var(--accent2); margin-bottom: 1rem; min-height: 1rem; }
+
+  /* WHY */
+  #why { background: var(--bg2); }
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .why-card {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.5rem;
+  }
+  .why-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
+  .why-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; }
+  .why-desc { font-size: 0.85rem; color: var(--text2); line-height: 1.55; }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg); border-top: 1px solid var(--border);
+    padding: 3rem 2rem 2rem;
+  }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem;
+  }
+  .footer-brand p { color: var(--text3); font-size: 0.85rem; margin-top: 0.75rem; max-width: 260px; }
+  .footer-col h4 { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); margin-bottom: 0.75rem; }
+  .footer-col a { display: block; color: var(--text2); text-decoration: none; font-size: 0.85rem; margin-bottom: 0.4rem; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--text); }
+  .footer-bottom { max-width: 1200px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--text3); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes slideRight {
+    from { opacity: 0; transform: translateX(-24px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.5; transform: scale(1.5); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-10px); }
+  }
+  @keyframes scanline {
+    0%   { transform: translateY(-100%); opacity: 0; }
+    10%  { opacity: 0.5; }
+    90%  { opacity: 0.5; }
+    100% { transform: translateY(400%); opacity: 0; }
+  }
+  @keyframes typewriter {
+    from { width: 0; }
+    to   { width: 100%; }
+  }
+  @keyframes blink {
+    0%, 100% { border-color: var(--accent); }
+    50%       { border-color: transparent; }
+  }
+  @keyframes shimmer {
+    0%   { background-position: -400px 0; }
+    100% { background-position: 400px 0; }
+  }
+  @keyframes countUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes borderPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(232,65,24,0.4); }
+    50%       { box-shadow: 0 0 0 8px rgba(232,65,24,0); }
+  }
+  @keyframes navSlide {
+    from { opacity: 0; transform: translateY(-100%); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes logoSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  @keyframes priceFlash {
+    0%   { color: var(--text); }
+    30%  { color: var(--accent); transform: scale(1.08); }
+    100% { color: var(--accent); transform: scale(1); }
+  }
+  @keyframes glitch {
+    0%, 100% { text-shadow: none; transform: translate(0); }
+    20% { text-shadow: -2px 0 var(--accent), 2px 0 var(--blue); transform: translate(-1px, 1px); }
+    40% { text-shadow: 2px 0 var(--accent), -2px 0 var(--blue); transform: translate(1px, -1px); }
+    60% { text-shadow: none; transform: translate(0); }
+  }
+  @keyframes scanGrid {
+    0%   { background-position: 0 0; }
+    100% { background-position: 0 40px; }
+  }
+  @keyframes heroGlow {
+    0%, 100% { opacity: 0.15; transform: scale(1); }
+    50%       { opacity: 0.28; transform: scale(1.08); }
+  }
+
+  /* Scroll-reveal base state */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-left {
+    opacity: 0; transform: translateX(-30px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-left.visible { opacity: 1; transform: translateX(0); }
+  .reveal-right {
+    opacity: 0; transform: translateX(30px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-right.visible { opacity: 1; transform: translateX(0); }
+  .delay-1 { transition-delay: 0.1s; }
+  .delay-2 { transition-delay: 0.2s; }
+  .delay-3 { transition-delay: 0.3s; }
+  .delay-4 { transition-delay: 0.4s; }
+  .delay-5 { transition-delay: 0.5s; }
+  .delay-6 { transition-delay: 0.6s; }
+
+  /* Nav entrance */
+  nav { animation: navSlide 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+  /* Logo hover spin */
+  .logo-icon { transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .logo:hover .logo-icon { transform: rotate(20deg) scale(1.1); }
+
+  /* Nav link underline slide */
+  .nav-links a { position: relative; }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+    height: 2px; background: var(--accent);
+    transform: scaleX(0); transform-origin: right;
+    transition: transform 0.25s ease;
+  }
+  .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+
+  /* Hero animations */
+  .hero-badge  { animation: slideRight 0.6s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  h1           { animation: fadeUp 0.7s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .hero-desc   { animation: fadeUp 0.7s 0.35s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .hero-actions{ animation: fadeUp 0.7s 0.45s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .hero-stats  { animation: fadeUp 0.7s 0.55s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .pc-card-hero{ animation: fadeUp 0.8s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both,
+                             float 4s 1.2s ease-in-out infinite; }
+
+  /* Pulsing live dot */
+  .hero-badge .dot { animation: pulse-dot 2s ease-in-out infinite; }
+
+  /* Hero bg breathe */
+  .hero-bg { animation: heroGlow 5s ease-in-out infinite; }
+
+  /* Animated grid overlay on hero */
+  #hero::after {
+    content: '';
+    position: absolute; inset: 0; pointer-events: none;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse 70% 60% at 60% 40%, transparent 30%, black 100%);
+    animation: scanGrid 3s linear infinite;
+    opacity: 0.4;
+  }
+
+  /* Scanline on hero card */
+  .pc-card-hero { overflow: hidden; }
+  .pc-card-hero::after {
+    content: '';
+    position: absolute; left: 0; right: 0; top: 0; height: 40%;
+    background: linear-gradient(to bottom, transparent, rgba(232,65,24,0.06), transparent);
+    animation: scanline 3.5s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  /* Button effects */
+  .btn-primary {
+    position: relative; overflow: hidden;
+    transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute; top: 50%; left: 50%;
+    width: 0; height: 0;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease, height 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+  }
+  .btn-primary:hover::before { width: 300px; height: 300px; opacity: 1; }
+  .btn-primary:hover { box-shadow: 0 0 20px var(--accent-glow); transform: translateY(-1px); }
+  .btn-ghost { transition: background 0.2s, border-color 0.2s, transform 0.15s, color 0.2s; }
+  .btn-ghost:hover { background: var(--bg3); border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+  /* PC tier cards */
+  .pc-tier {
+    transition: border-color 0.3s, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.3s;
+  }
+  .pc-tier:hover {
+    border-color: var(--accent) !important;
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 30px var(--accent-glow);
+  }
+  .pc-tier.featured { animation: borderPulse 2.5s ease-in-out infinite; }
+
+  /* Part cards */
+  .part-card {
+    transition: border-color 0.25s, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.25s;
+  }
+  .part-card:hover {
+    border-color: var(--accent);
+    transform: translateX(4px);
+    box-shadow: -4px 0 0 0 var(--accent);
+  }
+  .part-icon { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .part-card:hover .part-icon { transform: scale(1.2) rotate(-5deg); }
+
+  /* Why cards */
+  .why-card {
+    transition: border-color 0.25s, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+                background 0.25s, box-shadow 0.25s;
+    cursor: default;
+  }
+  .why-card:hover {
+    background: var(--card);
+    border-color: var(--accent);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+  }
+  .why-icon { transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .why-card:hover .why-icon { transform: scale(1.25) rotate(8deg); }
+
+  /* Theme toggle */
+  .theme-btn { transition: background 0.2s, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.2s; }
+  .theme-btn:hover { transform: scale(1.15) rotate(20deg); border-color: var(--accent); }
+
+  /* Total price flash on change */
+  .price-flash { animation: priceFlash 0.5s ease forwards; }
+
+  /* Section header glitch on hover */
+  h2.section-title { transition: color 0.2s; cursor: default; }
+  h2.section-title:hover { animation: glitch 0.4s ease; }
+
+  /* Spec rows stagger in */
+  .tier-spec-row {
+    transition: background 0.2s, padding-left 0.2s;
+  }
+  .tier-spec-row:hover { background: var(--bg3); padding-left: 8px; border-radius: 6px; }
+
+  /* Summary val pop */
+  .summary-val {
+    transition: color 0.3s, transform 0.3s;
+    display: inline-block;
+  }
+  .summary-val.updated {
+    animation: countUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Footer links */
+  .footer-col a {
+    position: relative; padding-left: 0;
+    transition: color 0.2s, padding-left 0.2s;
+  }
+  .footer-col a:hover { color: var(--accent) !important; padding-left: 6px; }
+
+  /* MOBILE */
+  .hamburger { display: none; }
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .pc-grid { grid-template-columns: 1fr; }
+    .builder-layout { grid-template-columns: 1fr; }
+    .build-summary { position: static; }
+    .why-grid { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">⚡</div>
+    ATX<span>Gaming</span>PCs
+  </a>
+  <ul class="nav-links">
+    <li><a href="#prebuilt">Pre-Built</a></li>
+    <li><a href="#builder">Build Your Own</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeToggle" title="Toggle theme">🌙</button>
+    <a href="#prebuilt" class="btn btn-primary">Shop Now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-badge"><span class="dot"></span> Austin, TX — Local Build & Delivery</div>
+        <h1>Game Without<br><span class="accent">Limits.</span></h1>
+        <p class="hero-desc">ATX Gaming PCs builds custom, hand-tuned rigs delivered to your door across Austin and the surrounding area. No bloatware. No compromises.</p>
+        <div class="hero-actions">
+          <a href="#prebuilt" class="btn btn-primary btn-lg">Shop Pre-Builts</a>
+          <a href="#builder" class="btn btn-ghost btn-lg">Build Your Own</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><span class="stat-n">500+</span><span class="stat-l">Builds Delivered</span></div>
+          <div class="stat"><span class="stat-n">48hr</span><span class="stat-l">Avg. Turnaround</span></div>
+          <div class="stat"><span class="stat-n">5★</span><span class="stat-l">Google Rating</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="pc-card-hero">
+          <div class="case-svg">
+            <svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+              <rect x="40" y="20" width="120" height="160" rx="8" fill="none" stroke="var(--border2)" stroke-width="2"/>
+              <rect x="48" y="28" width="80" height="50" rx="4" fill="var(--bg3)" stroke="var(--border)" stroke-width="1"/>
+              <rect x="52" y="32" width="72" height="42" rx="2" fill="var(--accent)" opacity="0.15"/>
+              <line x1="52" y1="40" x2="124" y2="40" stroke="var(--accent)" stroke-width="0.8" opacity="0.5"/>
+              <line x1="52" y1="48" x2="124" y2="48" stroke="var(--accent)" stroke-width="0.8" opacity="0.5"/>
+              <line x1="52" y1="56" x2="124" y2="56" stroke="var(--accent)" stroke-width="0.8" opacity="0.5"/>
+              <line x1="52" y1="64" x2="110" y2="64" stroke="var(--accent)" stroke-width="0.8" opacity="0.5"/>
+              <rect x="48" y="86" width="36" height="28" rx="4" fill="var(--bg3)" stroke="var(--border)" stroke-width="1"/>
+              <rect x="52" y="90" width="28" height="20" rx="2" fill="var(--blue)" opacity="0.2"/>
+              <rect x="56" y="94" width="4" height="4" rx="1" fill="var(--blue)" opacity="0.7"/>
+              <rect x="64" y="94" width="4" height="4" rx="1" fill="var(--blue)" opacity="0.5"/>
+              <rect x="72" y="94" width="4" height="4" rx="1" fill="var(--blue)" opacity="0.3"/>
+              <rect x="56" y="102" width="16" height="4" rx="1" fill="var(--blue)" opacity="0.4"/>
+              <rect x="92" y="86" width="36" height="28" rx="4" fill="var(--bg3)" stroke="var(--border)" stroke-width="1"/>
+              <rect x="96" y="90" width="28" height="20" rx="2" fill="var(--green)" opacity="0.2"/>
+              <circle cx="110" cy="100" r="7" fill="var(--green)" opacity="0.3"/>
+              <circle cx="110" cy="100" r="3" fill="var(--green)" opacity="0.6"/>
+              <rect x="48" y="122" width="104" height="10" rx="2" fill="var(--bg3)" stroke="var(--border)" stroke-width="1"/>
+              <rect x="52" y="125" width="60" height="4" rx="1" fill="var(--accent)" opacity="0.4"/>
+              <rect x="48" y="138" width="104" height="10" rx="2" fill="var(--bg3)" stroke="var(--border)" stroke-width="1"/>
+              <rect x="52" y="141" width="90" height="4" rx="1" fill="var(--accent)" opacity="0.25"/>
+              <circle cx="148" cy="36" r="8" fill="var(--accent)" opacity="0.8"/>
+              <circle cx="148" cy="36" r="4" fill="var(--accent)"/>
+              <rect x="138" y="80" width="18" height="8" rx="2" fill="var(--bg3)" stroke="var(--border)" stroke-width="1"/>
+              <rect x="138" y="92" width="18" height="8" rx="2" fill="var(--bg3)" stroke="var(--border)" stroke-width="1"/>
+              <rect x="138" y="104" width="18" height="8" rx="2" fill="var(--bg3)" stroke="var(--border)" stroke-width="1"/>
+            </svg>
+          </div>
+          <div class="specs-mini">
+            <div class="spec-row"><span class="spec-key">CPU</span><span class="spec-val">Ryzen 7 9700X</span></div>
+            <div class="spec-row"><span class="spec-key">GPU</span><span class="spec-val">RTX 4070 Ti</span></div>
+            <div class="spec-row"><span class="spec-key">RAM</span><span class="spec-val">32GB DDR5</span></div>
+            <div class="spec-row"><span class="spec-key">Price</span><span class="spec-val" style="color:var(--accent)">$2,199</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRE-BUILT -->
+<section id="prebuilt">
+  <div class="container">
+    <div class="section-label reveal">Pre-Built Systems</div>
+    <h2 class="section-title reveal delay-1">Ready to Ship, Built to Perform</h2>
+    <p class="section-sub reveal delay-2">Hand-assembled in Austin and tested for 24 hours before delivery. Pick your tier and we'll bring it to you.</p>
+    <div class="pc-grid">
+      <!-- ENTRY -->
+      <div class="pc-tier reveal delay-1">
+        <div class="tier-header">
+          <span class="tier-badge badge-entry">Entry</span>
+          <div class="tier-name">The Longhorn</div>
+          <div class="tier-sub">1080p gaming beast</div>
+        </div>
+        <div class="tier-price"><sup>$</sup>849</div>
+        <div class="tier-specs">
+          <div class="tier-spec-row">
+            <div class="spec-icon">🔲</div>
+            <div class="spec-info"><div class="spec-label">AMD Ryzen 5 7600</div><div class="spec-detail">6-Core / 12-Thread, 5.1GHz Boost</div></div>
+          </div>
+          <div class="tier-spec-row">
+            <div class="spec-icon">🎮</div>
+            <div class="spec-info"><div class="spec-label">NVIDIA RTX 4060</div><div class="spec-detail">8GB GDDR6, DLSS 3</div></div>
+          </div>
+          <div class="tier-spec-row">
+            <div class="spec-icon">💾</div>
+            <div class="spec-info"><div class="spec-label">16GB DDR5-4800</div><div class="spec-detail">Dual Channel, Expandable to 64GB</div></div>
+          </div>
+          <div class="tier-spec-row">
+            <div class="spec-icon">💿</div>
+            <div class="spec-info"><div class="spec-label">1TB NVMe SSD</div><div class="spec-detail">PCIe 4.0, 3,500MB/s Read</div></div>
+          </div>
+          <div class="tier-spec-row">
+            <div class="spec-icon">🖥️</div>
+            <div class="spec-info"><div class="spec-label">Fractal Design Pop Mini</div><div class="spec-detail">mATX, Tempered Glass, Cable Managed</div></div>
+          </div>
+          <div class="tier-spec-row">
+            <div class="spec-icon">⚡</div>
+            <div class="spec-info"><div class="spec-label">650W 80+ Bronze PSU</div><div class="spec-detail">Semi-Modular</div></div>
+          </div>
+          <div class="tier-spec-row">
+            <div class="spec-icon">🌡️</div>
+            <div class="spec-info"><div class="spec-label">240mm AIO Cooler</div><div class="spec-detail">Quiet, handles Austin summers</div></div>
+          </div>
+        </div>
+        <div class="tier-footer">
+          <a href="#contact" class="btn btn-ghost" style="width:100%;justify-content:center;">Order The Longhorn</a>
+        </div>
+      </div>
+
+      <!-- MID -->
+      <div class="pc-tier featured reveal delay-2">
+        <div class="tier-header">
+          <span class="tier-badge badge-mid">Most Popular</span>
+          <div class="tier-name">The Capitol</div>
+          <div class="tier-sub">1440p / 4K capable</div>
+        </div>
+        <div class="tier-price"><sup>$</sup>1,549</div>
+        <div class="tier-specs">
+          <div class="tier-spec-row">
+            <div class="spec-icon">🔲</div>
+            <div class="spec-info"><div class="spec-label">AMD Ryzen 7 9700X</div><div class="spec-detail">8-Core / 16-Thread, 5.5GHz Boost</div></div>
+          </div>
+          <div class="tier-spec-row">
+            <div class="spec-icon">🎮</div>
+            <div class="spec-info"><div class="spec-label">NVIDIA RTX 4070 Super</div><div class="spec-detail">12GB GDDR6X, DLSS 3.5 + FG</div></div>
+          </div>
+          <div class="tier-spec-row">
+            <div class="spec-icon">💾</div>
+            <div class="spec-info"><div class="spec-label">32GB DDR5-6000</div><div class="spec-detail">Dual Channel Overclocked</div></div>
+          </div>
+          <div class="tier-spec-row">
+            <div class="spec-icon">💿</div>
+            <div class="spec-info"><div class="spec-label">2TB NVMe SSD</div><div class="spec-detail">PCIe 4.0, 7,000MB/s Read</div></div>
+          </div>
+          <div class="tier-spec-row">
+            <div class="spec-icon">🖥️</div>
+            <div class="spec-info"><div class="spec-label">Lian Li Lancool 216</div><div class="spec-detail">ATX Mid-Tower, Dual Front Fans</div></div>
+          </div>
+          <div class="tier-spec-row">
+            <div class="spec-icon">⚡</div>
+            <div class="spec-info"><div class="spec-label">850W 80+ Gold PSU</div><div class="spec-detail">Fully Modular, Seasonic</div></div>
+          </div>
+          <div class="tier-spec-row">
+            <div class="spec-icon">🌡️</div>
+            <div class="spec-info"><div class="spec-label">360mm AIO Cooler</div><div class="spec-detail">RGB, Low-Noise Optimized</div></div>
+          </div>
+        </div>
+        <div class="tier-footer">
+          <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center;">Order The Capitol</a>
+        </div>
+      </div>
+
+      <!-- HIGH -->
+      <div class="pc-tier reveal delay-3">
+        <div class="tier-header">
+          <span class="tier-badge badge-pro">Pro Rig</span>
+          <div class="tier-name">The F1</div>
+          <div class="tier-sub">4K ultra / streaming / content</div>
+        </div>
+        <div class="tier-price"><sup>$</sup>2,799</div>
+        <div class="tier-specs">
+          <div class="tier-spec-row">
+            <div class="spec-icon">🔲</div>
+            <div class="spec-info"><div class="spec-label">Intel Core i9-14900K</div><div class="spec-detail">24-Core (8P+16E), 6.0GHz Boost</div></div>
+          </div>
+          <div class="tier-spec-row">
+            <div class="spec-icon">🎮</div>
+            <div class="spec-info"><div class="spec-label">NVIDIA RTX 4090</div><div class="spec-detail">24GB GDDR6X, Flagship Performance</div></div>
+          </div>
+          <div class="tier-spec-row">
+            <div class="spec-icon">💾</div>
+            <div class="spec-info"><div class="spec-label">64GB DDR5-7200</div><div class="spec-detail">XMP 3.0, Quad-Channel Ready</div></div>
+          </div>
+          <div class="tier-spec-row">
+            <div class="spec-icon">💿</div>
+            <div class="spec-info"><div class="spec-label">4TB NVMe SSD (×2)</div><div class="spec-detail">PCIe 5.0, RAID 0 Optional</div></div>
+          </div>
+          <div class="tier-spec-row">
+            <div class="spec-icon">🖥️</div>
+            <div class="spec-info"><div class="spec-label">Corsair 5000D Airflow</div><div class="spec-detail">ATX Full Tower, Premium Airflow</div></div>
+          </div>
+          <div class="tier-spec-row">
+            <div class="spec-icon">⚡</div>
+            <div class="spec-info"><div class="spec-label">1200W 80+ Platinum</div><div class="spec-detail">Fully Modular, Future-Proof</div></div>
+          </div>
+          <div class="tier-spec-row">
+            <div class="spec-icon">🌡️</div>
+            <div class="spec-info"><div class="spec-label">Custom Loop Liquid Cooling</div><div class="spec-detail">CPU + GPU, Hardline Optional</div></div>
+          </div>
+        </div>
+        <div class="tier-footer">
+          <a href="#contact" class="btn btn-ghost" style="width:100%;justify-content:center;">Order The F1</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILDER -->
+<section id="builder">
+  <div class="container">
+    <div class="section-label reveal">PC Part Picker</div>
+    <h2 class="section-title reveal delay-1">Build Your Dream Rig</h2>
+    <p class="section-sub reveal delay-2">Mix and match components. We check compatibility in real time and give you a final price — then we build it for you.</p>
+    <div class="builder-layout">
+      <div class="parts-list reveal-left delay-2" id="partsList">
+
+        <div class="part-card">
+          <div class="part-icon">🔲</div>
+          <div class="part-info">
+            <div class="part-name">CPU (Processor)</div>
+            <select class="part-select" data-part="cpu" onchange="updateBuild()">
+              <option value="0" data-price="0">— Select a CPU —</option>
+              <option value="199" data-price="199" data-socket="AM5" data-tdp="65">AMD Ryzen 5 7600 — $199</option>
+              <option value="259" data-price="259" data-socket="AM5" data-tdp="65">AMD Ryzen 5 7600X — $259</option>
+              <option value="329" data-price="329" data-socket="AM5" data-tdp="65">AMD Ryzen 7 9700X — $329</option>
+              <option value="449" data-price="449" data-socket="AM5" data-tdp="105">AMD Ryzen 9 9900X — $449</option>
+              <option value="249" data-price="249" data-socket="LGA1700" data-tdp="125">Intel Core i5-14600K — $249</option>
+              <option value="389" data-price="389" data-socket="LGA1700" data-tdp="125">Intel Core i7-14700K — $389</option>
+              <option value="589" data-price="589" data-socket="LGA1700" data-tdp="253">Intel Core i9-14900K — $589</option>
+            </select>
+          </div>
+          <div class="part-price" id="price-cpu">—</div>
+        </div>
+
+        <div class="part-card">
+          <div class="part-icon">🧩</div>
+          <div class="part-info">
+            <div class="part-name">Motherboard</div>
+            <select class="part-select" data-part="mobo" onchange="updateBuild()">
+              <option value="0" data-price="0">— Select a Motherboard —</option>
+              <option value="129" data-price="129" data-socket="AM5">ASUS Prime B650-Plus (AM5) — $129</option>
+              <option value="179" data-price="179" data-socket="AM5">MSI MAG X670E (AM5) — $179</option>
+              <option value="299" data-price="299" data-socket="AM5">ASUS ROG Crosshair X670E (AM5) — $299</option>
+              <option value="149" data-price="149" data-socket="LGA1700">MSI PRO Z790-A (LGA1700) — $149</option>
+              <option value="229" data-price="229" data-socket="LGA1700">ASUS ROG Strix Z790-E (LGA1700) — $229</option>
+              <option value="349" data-price="349" data-socket="LGA1700">Gigabyte Z790 Aorus Master (LGA1700) — $349</option>
+            </select>
+          </div>
+          <div class="part-price" id="price-mobo">—</div>
+        </div>
+
+        <div class="part-card">
+          <div class="part-icon">💾</div>
+          <div class="part-info">
+            <div class="part-name">RAM (Memory)</div>
+            <select class="part-select" data-part="ram" onchange="updateBuild()">
+              <option value="0" data-price="0">— Select RAM —</option>
+              <option value="59" data-price="59">16GB DDR5-4800 (2×8GB) — $59</option>
+              <option value="89" data-price="89">32GB DDR5-6000 (2×16GB) — $89</option>
+              <option value="159" data-price="159">64GB DDR5-6000 (2×32GB) — $159</option>
+              <option value="229" data-price="229">64GB DDR5-7200 XMP3 (2×32GB) — $229</option>
+              <option value="349" data-price="349">128GB DDR5-6400 (4×32GB) — $349</option>
+            </select>
+          </div>
+          <div class="part-price" id="price-ram">—</div>
+        </div>
+
+        <div class="part-card">
+          <div class="part-icon">🎮</div>
+          <div class="part-info">
+            <div class="part-name">GPU (Graphics Card)</div>
+            <select class="part-select" data-part="gpu" onchange="updateBuild()">
+              <option value="0" data-price="0">— Select a GPU —</option>
+              <option value="299" data-price="299" data-watts="120">NVIDIA RTX 4060 8GB — $299</option>
+              <option value="399" data-price="399" data-watts="165">NVIDIA RTX 4060 Ti 16GB — $399</option>
+              <option value="599" data-price="599" data-watts="200">NVIDIA RTX 4070 Super 12GB — $599</option>
+              <option value="799" data-price="799" data-watts="285">NVIDIA RTX 4070 Ti Super 16GB — $799</option>
+              <option value="999" data-price="999" data-watts="320">NVIDIA RTX 4080 Super 16GB — $999</option>
+              <option value="1599" data-price="1599" data-watts="450">NVIDIA RTX 4090 24GB — $1,599</option>
+              <option value="479" data-price="479" data-watts="150">AMD RX 7700 XT 12GB — $479</option>
+              <option value="699" data-price="699" data-watts="190">AMD RX 7800 XT 16GB — $699</option>
+            </select>
+          </div>
+          <div class="part-price" id="price-gpu">—</div>
+        </div>
+
+        <div class="part-card">
+          <div class="part-icon">💿</div>
+          <div class="part-info">
+            <div class="part-name">Storage (SSD)</div>
+            <select class="part-select" data-part="ssd" onchange="updateBuild()">
+              <option value="0" data-price="0">— Select Storage —</option>
+              <option value="69" data-price="69">500GB WD Black SN770 PCIe 4.0 — $69</option>
+              <option value="89" data-price="89">1TB WD Black SN770 PCIe 4.0 — $89</option>
+              <option value="139" data-price="139">2TB Samsung 990 Pro PCIe 4.0 — $139</option>
+              <option value="189" data-price="189">2TB WD Black SN850X PCIe 4.0 — $189</option>
+              <option value="249" data-price="249">4TB Crucial T700 PCIe 5.0 — $249</option>
+              <option value="299" data-price="299">2TB Samsung 990 Pro + 2TB WD Blue HDD — $299</option>
+            </select>
+          </div>
+          <div class="part-price" id="price-ssd">—</div>
+        </div>
+
+        <div class="part-card">
+          <div class="part-icon">⚡</div>
+          <div class="part-info">
+            <div class="part-name">Power Supply (PSU)</div>
+            <select class="part-select" data-part="psu" onchange="updateBuild()">
+              <option value="0" data-price="0">— Select PSU —</option>
+              <option value="79" data-price="79" data-watts="650">EVGA 650W 80+ Bronze — $79</option>
+              <option value="109" data-price="109" data-watts="750">Corsair RM750x 80+ Gold — $109</option>
+              <option value="129" data-price="129" data-watts="850">Seasonic Focus GX-850 80+ Gold — $129</option>
+              <option value="169" data-price="169" data-watts="1000">be quiet! Dark Power 1000W Platinum — $169</option>
+              <option value="219" data-price="219" data-watts="1200">Corsair HX1200 80+ Platinum — $219</option>
+            </select>
+          </div>
+          <div class="part-price" id="price-psu">—</div>
+        </div>
+
+        <div class="part-card">
+          <div class="part-icon">🖥️</div>
+          <div class="part-info">
+            <div class="part-name">Case</div>
+            <select class="part-select" data-part="case" onchange="updateBuild()">
+              <option value="0" data-price="0">— Select a Case —</option>
+              <option value="79" data-price="79">Fractal Design Pop Mini (mATX) — $79</option>
+              <option value="109" data-price="109">Lian Li Lancool 216 (ATX) — $109</option>
+              <option value="129" data-price="129">Corsair 4000D Airflow (ATX) — $129</option>
+              <option value="169" data-price="169">Corsair 5000D Airflow (ATX) — $169</option>
+              <option value="199" data-price="199">Lian Li O11 Dynamic EVO (ATX) — $199</option>
+              <option value="249" data-price="249">Lian Li O11 XL (E-ATX) — $249</option>
+            </select>
+          </div>
+          <div class="part-price" id="price-case">—</div>
+        </div>
+
+        <div class="part-card">
+          <div class="part-icon">🌡️</div>
+          <div class="part-info">
+            <div class="part-name">CPU Cooler</div>
+            <select class="part-select" data-part="cooler" onchange="updateBuild()">
+              <option value="0" data-price="0">— Select CPU Cooler —</option>
+              <option value="39" data-price="39">Thermalright Peerless Assassin 120 (Air) — $39</option>
+              <option value="69" data-price="69">be quiet! Dark Rock 4 (Air) — $69</option>
+              <option value="89" data-price="89">Corsair H100i Elite 240mm AIO — $89</option>
+              <option value="119" data-price="119">NZXT Kraken 280mm AIO — $119</option>
+              <option value="169" data-price="169">Corsair H150i Elite 360mm AIO — $169</option>
+              <option value="399" data-price="399">Custom Hardline Loop (CPU+GPU) — $399</option>
+            </select>
+          </div>
+          <div class="part-price" id="price-cooler">—</div>
+        </div>
+
+        <div class="part-card" style="background:var(--bg3);">
+          <div class="part-icon">🛠️</div>
+          <div class="part-info">
+            <div class="part-name">ATX Build Labor + 24hr Stress Test</div>
+            <div style="font-size:0.8rem;color:var(--text3);margin-top:4px;">Included with every custom build — professional assembly, cable management, full Windows 11 install &amp; driver setup.</div>
+          </div>
+          <div class="part-price" style="color:var(--green)">$99</div>
+        </div>
+
+      </div>
+
+      <div class="build-summary reveal-right delay-3">
+        <div class="summary-title">Your Build Summary</div>
+        <div class="summary-rows" id="summaryRows">
+          <div class="summary-row"><span class="summary-label">CPU</span><span class="summary-val" id="s-cpu">—</span></div>
+          <div class="summary-row"><span class="summary-label">Motherboard</span><span class="summary-val" id="s-mobo">—</span></div>
+          <div class="summary-row"><span class="summary-label">RAM</span><span class="summary-val" id="s-ram">—</span></div>
+          <div class="summary-row"><span class="summary-label">GPU</span><span class="summary-val" id="s-gpu">—</span></div>
+          <div class="summary-row"><span class="summary-label">Storage</span><span class="summary-val" id="s-ssd">—</span></div>
+          <div class="summary-row"><span class="summary-label">PSU</span><span class="summary-val" id="s-psu">—</span></div>
+          <div class="summary-row"><span class="summary-label">Case</span><span class="summary-val" id="s-case">—</span></div>
+          <div class="summary-row"><span class="summary-label">Cooler</span><span class="summary-val" id="s-cooler">—</span></div>
+          <div class="summary-row"><span class="summary-label">Build Labor</span><span class="summary-val" style="color:var(--green)">$99</span></div>
+        </div>
+        <div class="compat-bar"><div class="compat-fill" id="compatFill" style="width:0%"></div></div>
+        <div class="compat-label" id="compatLabel">Select components to check compatibility</div>
+        <div class="compat-issues" id="compatIssues"></div>
+        <div class="summary-total">
+          <span class="total-label">Total</span>
+          <span class="total-price" id="totalPrice">$99</span>
+        </div>
+        <a href="#contact" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;" id="buildOrderBtn">Request This Build</a>
+        <p style="font-size:0.75rem;color:var(--text3);text-align:center;margin-top:0.75rem;">Free delivery within Austin city limits. 1-year parts warranty included.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div class="container">
+    <div class="section-label reveal">Why ATX Gaming PCs</div>
+    <h2 class="section-title reveal delay-1">Built Here. Backed Here.</h2>
+    <p class="section-sub reveal delay-2">We're not an online drop-shipper. We're your neighbors in Austin and we stand behind every build.</p>
+    <div class="why-grid">
+      <div class="why-card reveal delay-1">
+        <div class="why-icon">🤝</div>
+        <div class="why-title">Local Austin Business</div>
+        <div class="why-desc">We live here too. Every PC is hand-built by techs in Austin, TX — not a warehouse in another state. Support local, game better.</div>
+      </div>
+      <div class="why-card reveal delay-2">
+        <div class="why-icon">🧪</div>
+        <div class="why-title">24-Hour Stress Test</div>
+        <div class="why-desc">Every system runs Cinebench, OCCT, and FurMark for 24 hours straight before it ships. If it doesn't survive that, you won't receive it.</div>
+      </div>
+      <div class="why-card reveal delay-3">
+        <div class="why-icon">🚚</div>
+        <div class="why-title">Free Local Delivery</div>
+        <div class="why-desc">Free white-glove delivery to your door anywhere in greater Austin. We carry it in, set it up, and make sure it POSTs before we leave.</div>
+      </div>
+      <div class="why-card reveal delay-4">
+        <div class="why-icon">🛡️</div>
+        <div class="why-title">1-Year Parts Warranty</div>
+        <div class="why-desc">All components carry manufacturer warranty plus our own 1-year labor guarantee. Something goes wrong? We come to you.</div>
+      </div>
+      <div class="why-card reveal delay-5">
+        <div class="why-icon">⚡</div>
+        <div class="why-title">48-Hour Turnaround</div>
+        <div class="why-desc">Most builds are completed and out the door within 48 hours of order confirmation. Rush builds available for an additional fee.</div>
+      </div>
+      <div class="why-card reveal delay-6">
+        <div class="why-icon">📞</div>
+        <div class="why-title">Real Human Support</div>
+        <div class="why-desc">Call or text us directly. No chatbots. No ticket queues. A real tech who built your PC picks up the phone.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:var(--bg);">
+  <div class="container" style="max-width:680px;">
+    <div class="section-label reveal">Get in Touch</div>
+    <h2 class="section-title reveal delay-1">Ready to Order?</h2>
+    <p class="section-sub reveal delay-2">Fill out the form and we'll get back to you within a few hours with a final quote and timeline.</p>
+    <form class="reveal delay-3" style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2rem;display:flex;flex-direction:column;gap:1rem;" onsubmit="submitForm(event)">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div>
+          <label style="font-size:0.8rem;font-weight:600;color:var(--text2);display:block;margin-bottom:6px;">First Name</label>
+          <input type="text" placeholder="Jane" required style="width:100%;padding:10px 12px;border:1px solid var(--border2);border-radius:8px;background:var(--bg3);color:var(--text);font-size:0.9rem;outline:none;">
+        </div>
+        <div>
+          <label style="font-size:0.8rem;font-weight:600;color:var(--text2);display:block;margin-bottom:6px;">Last Name</label>
+          <input type="text" placeholder="Doe" required style="width:100%;padding:10px 12px;border:1px solid var(--border2);border-radius:8px;background:var(--bg3);color:var(--text);font-size:0.9rem;outline:none;">
+        </div>
+      </div>
+      <div>
+        <label style="font-size:0.8rem;font-weight:600;color:var(--text2);display:block;margin-bottom:6px;">Email Address</label>
+        <input type="email" placeholder="jane@example.com" required style="width:100%;padding:10px 12px;border:1px solid var(--border2);border-radius:8px;background:var(--bg3);color:var(--text);font-size:0.9rem;outline:none;">
+      </div>
+      <div>
+        <label style="font-size:0.8rem;font-weight:600;color:var(--text2);display:block;margin-bottom:6px;">Phone (Optional)</label>
+        <input type="tel" placeholder="(512) 555-0100" style="width:100%;padding:10px 12px;border:1px solid var(--border2);border-radius:8px;background:var(--bg3);color:var(--text);font-size:0.9rem;outline:none;">
+      </div>
+      <div>
+        <label style="font-size:0.8rem;font-weight:600;color:var(--text2);display:block;margin-bottom:6px;">Interested In</label>
+        <select style="width:100%;padding:10px 12px;border:1px solid var(--border2);border-radius:8px;background:var(--bg3);color:var(--text);font-size:0.9rem;outline:none;">
+          <option>Pre-Built — The Longhorn ($849)</option>
+          <option>Pre-Built — The Capitol ($1,549)</option>
+          <option>Pre-Built — The F1 ($2,799)</option>
+          <option>Custom Build (Part Picker)</option>
+          <option>Just browsing / need advice</option>
+        </select>
+      </div>
+      <div>
+        <label style="font-size:0.8rem;font-weight:600;color:var(--text2);display:block;margin-bottom:6px;">Austin delivery zip code</label>
+        <input type="text" placeholder="78701" maxlength="5" style="width:100%;padding:10px 12px;border:1px solid var(--border2);border-radius:8px;background:var(--bg3);color:var(--text);font-size:0.9rem;outline:none;">
+      </div>
+      <div>
+        <label style="font-size:0.8rem;font-weight:600;color:var(--text2);display:block;margin-bottom:6px;">Message / Custom Specs</label>
+        <textarea rows="4" placeholder="Tell us your budget, what games you play, or paste your custom build..." style="width:100%;padding:10px 12px;border:1px solid var(--border2);border-radius:8px;background:var(--bg3);color:var(--text);font-size:0.9rem;outline:none;resize:vertical;"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg" style="align-self:flex-start;" id="submitBtn">Send My Order Request ⚡</button>
+      <div id="formMsg" style="display:none;padding:10px 14px;border-radius:8px;font-size:0.85rem;"></div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo" style="font-size:1.1rem;">
+        <div class="logo-icon" style="width:30px;height:30px;font-size:0.9rem;">⚡</div>
+        ATX<span>Gaming</span>PCs
+      </a>
+      <p>Austin's locally-owned gaming PC builder. Hand-built, stress-tested, and delivered to your door.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <a href="#prebuilt">The Longhorn</a>
+      <a href="#prebuilt">The Capitol</a>
+      <a href="#prebuilt">The F1</a>
+      <a href="#builder">Build Your Own</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#why">Why Us</a>
+      <a href="#why">Warranty</a>
+      <a href="#contact">Contact Us</a>
+      <a href="#">About</a>
+    </div>
+    <div class="footer-col">
+      <h4>Austin</h4>
+      <a href="#">We Deliver Citywide</a>
+      <a href="#">(512) 555-GAME</a>
+      <a href="#">info@atxgamingpcs.com</a>
+      <a href="#">Austin, TX 78701</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 ATX Gaming PCs LLC. All rights reserved.</span>
+    <span>🤘 Made in Austin, TX</span>
+  </div>
+</footer>
+
+<script>
+const LABOR = 99;
+
+const partLabels = {
+  cpu: 'CPU', mobo: 'Motherboard', ram: 'RAM',
+  gpu: 'GPU', ssd: 'Storage', psu: 'PSU',
+  'case': 'Case', cooler: 'Cooler'
+};
+
+function getSelects() {
+  return document.querySelectorAll('.part-select');
+}
+
+function getVal(sel) {
+  const opt = sel.options[sel.selectedIndex];
+  return {
+    price: parseInt(opt.dataset.price) || 0,
+    socket: opt.dataset.socket || null,
+    watts: parseInt(opt.dataset.watts) || 0,
+    psuWatts: parseInt(opt.dataset.watts) || 0,
+    tdp: parseInt(opt.dataset.tdp) || 0,
+    text: sel.value > 0 ? opt.text.split(' — ')[0] : null
+  };
+}
+
+function updateBuild() {
+  const selects = getSelects();
+  let total = LABOR;
+  let selected = 0;
+  const vals = {};
+
+  selects.forEach(sel => {
+    const part = sel.dataset.part;
+    const v = getVal(sel);
+    vals[part] = v;
+    document.getElementById('price-' + part).textContent = v.price > 0 ? '$' + v.price.toLocaleString() : '—';
+    popVal('s-' + part, v.text || '—');
+    if (v.price > 0) { total += v.price; selected++; }
+  });
+
+  flashTotal(total);
+
+  // Compatibility checks
+  const issues = [];
+  if (vals.cpu.socket && vals.mobo.socket && vals.cpu.socket !== vals.mobo.socket) {
+    issues.push('⚠ CPU socket (' + vals.cpu.socket + ') does not match motherboard socket (' + vals.mobo.socket + ')');
+  }
+  let totalWatts = (vals.cpu.tdp || 0) + (vals.gpu.watts || 0) + 100;
+  const psyCap = vals.psu.psuWatts;
+  if (psyCap > 0 && totalWatts > psyCap) {
+    issues.push('⚠ PSU may be underpowered (est. ' + totalWatts + 'W system, ' + psyCap + 'W PSU)');
+  }
+
+  document.getElementById('compatIssues').textContent = issues.join('\n');
+
+  const pct = Math.min(100, Math.round((selected / 8) * 100));
+  document.getElementById('compatFill').style.width = pct + '%';
+  document.getElementById('compatFill').style.background = issues.length ? 'var(--accent2)' : 'var(--green)';
+
+  if (pct === 0) {
+    document.getElementById('compatLabel').textContent = 'Select components to check compatibility';
+  } else if (pct < 100) {
+    document.getElementById('compatLabel').textContent = pct + '% complete — ' + (8 - selected) + ' part(s) remaining';
+  } else if (issues.length) {
+    document.getElementById('compatLabel').textContent = 'Build complete — compatibility issues detected';
+  } else {
+    document.getElementById('compatLabel').textContent = 'All parts selected — no compatibility issues ✓';
+  }
+}
+
+function submitForm(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+  setTimeout(() => {
+    const msg = document.getElementById('formMsg');
+    msg.style.display = 'block';
+    msg.style.background = 'rgba(0,201,107,0.1)';
+    msg.style.border = '1px solid rgba(0,201,107,0.3)';
+    msg.style.color = 'var(--green)';
+    msg.textContent = '✓ Got it! We\'ll reach out within a few hours to confirm your order and delivery window.';
+    btn.textContent = 'Request Sent ✓';
+    btn.style.background = 'var(--green)';
+  }, 1200);
+}
+
+// ── Scroll reveal ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(el => {
+    if (el.isIntersecting) {
+      el.target.classList.add('visible');
+      observer.unobserve(el.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+// ── Animated stat counters ──
+function animateCounter(el, target, suffix, duration) {
+  const start = performance.now();
+  const update = (now) => {
+    const p = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = (Number.isInteger(target) ? Math.round(eased * target) : (eased * target).toFixed(0)) + suffix;
+    if (p < 1) requestAnimationFrame(update);
+  };
+  requestAnimationFrame(update);
+}
+
+const statObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const nums = entry.target.querySelectorAll('.stat-n');
+      nums[0] && animateCounter(nums[0], 500, '+', 1400);
+      statObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+const heroStats = document.querySelector('.hero-stats');
+if (heroStats) statObserver.observe(heroStats);
+
+// ── Summary val pop animation ──
+function popVal(id, text) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = text;
+  el.classList.remove('updated');
+  void el.offsetWidth;
+  el.classList.add('updated');
+}
+
+// ── Price flash on total change ──
+let lastTotal = 99;
+function flashTotal(total) {
+  const el = document.getElementById('totalPrice');
+  el.textContent = '$' + total.toLocaleString();
+  if (total !== lastTotal) {
+    el.classList.remove('price-flash');
+    void el.offsetWidth;
+    el.classList.add('price-flash');
+    lastTotal = total;
+  }
+}
+
+// ── Nav shrink on scroll ──
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) {
+    nav.style.height = '56px';
+    nav.style.boxShadow = '0 4px 24px rgba(0,0,0,0.3)';
+  } else {
+    nav.style.height = 'var(--nav-h)';
+    nav.style.boxShadow = 'none';
+  }
+}, { passive: true });
+
+// ── Theme toggle
+const toggleBtn = document.getElementById('themeToggle');
+function applyTheme(t) {
+  document.documentElement.dataset.theme = t;
+  toggleBtn.textContent = t === 'dark' ? '🌙' : '☀️';
+  localStorage.setItem('atx-theme', t);
+}
+toggleBtn.addEventListener('click', () => {
+  applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+});
+const saved = localStorage.getItem('atx-theme');
+if (saved) applyTheme(saved);
+
+updateBuild();
+</script>
+</body>
+</html>
