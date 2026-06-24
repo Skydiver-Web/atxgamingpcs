@@ -52,6 +52,14 @@
 }
 </script>
 
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
 <link rel="stylesheet" href="css/style.css">
 <style>
   .compare-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin-top: 3rem; }
@@ -74,6 +82,30 @@
   .incl-list li { display: flex; align-items: flex-start; gap: 8px; font-size: 0.88rem; color: var(--text2); }
   .incl-list li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
   @media (max-width: 768px) { .what-grid { grid-template-columns: 1fr; } .compare-table { font-size: 0.78rem; } .compare-table td, .compare-table th { padding: 0.6rem 0.6rem; } }
+
+  /* 3D Viewer */
+  .viewer-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+  .viewer-wrap {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 18px;
+    overflow: hidden; display: flex; flex-direction: column;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .viewer-wrap:hover { border-color: var(--border2); box-shadow: 0 8px 32px rgba(0,0,0,0.25); }
+  .viewer-label {
+    padding: 1rem 1.25rem 0; font-size: 0.9rem; font-weight: 800;
+    display: flex; align-items: center; gap: 8px; letter-spacing: -0.01em;
+  }
+  .viewer-badge {
+    font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 2px 8px; border-radius: 20px;
+  }
+  .pc-canvas { width: 100%; height: 360px; display: block; cursor: grab; }
+  .pc-canvas:active { cursor: grabbing; }
+  .viewer-hint {
+    text-align: center; font-size: 0.72rem; color: var(--text3);
+    padding: 0.35rem 1rem 0.85rem; user-select: none;
+  }
+  @media (max-width: 960px) { .viewer-grid { grid-template-columns: 1fr; } .pc-canvas { height: 300px; } }
 </style>
 </head>
 <body>
@@ -187,6 +219,41 @@
   </div>
 </section>
 
+<!-- 3D PC VIEWER -->
+<section style="background:var(--bg3);">
+  <div class="container">
+    <div class="section-label reveal">3D Visualization</div>
+    <h2 class="section-title reveal delay-1">See Your Build in 3D</h2>
+    <p class="section-sub reveal delay-2">Real-time 3D renders of each tier — every component modeled, RGB lit, and interactive. Drag to rotate.</p>
+    <div class="viewer-grid">
+      <div class="viewer-wrap reveal delay-1">
+        <div class="viewer-label">
+          <span class="viewer-badge" style="background:rgba(0,201,107,0.15);color:#00c96b;">Entry</span>
+          The Longhorn
+        </div>
+        <canvas id="canvas-longhorn" class="pc-canvas"></canvas>
+        <div class="viewer-hint">⟳ Drag to rotate &nbsp;·&nbsp; $849</div>
+      </div>
+      <div class="viewer-wrap reveal delay-2">
+        <div class="viewer-label">
+          <span class="viewer-badge" style="background:rgba(59,130,246,0.15);color:#3b82f6;">Most Popular</span>
+          The Capitol
+        </div>
+        <canvas id="canvas-capitol" class="pc-canvas"></canvas>
+        <div class="viewer-hint">⟳ Drag to rotate &nbsp;·&nbsp; $1,549</div>
+      </div>
+      <div class="viewer-wrap reveal delay-3">
+        <div class="viewer-label">
+          <span class="viewer-badge" style="background:rgba(232,65,24,0.15);color:#e84118;">Pro Rig</span>
+          The F1
+        </div>
+        <canvas id="canvas-f1" class="pc-canvas"></canvas>
+        <div class="viewer-hint">⟳ Drag to rotate &nbsp;·&nbsp; $2,799</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- COMPARISON TABLE -->
 <section style="background:var(--bg2);">
   <div class="container">
@@ -273,6 +340,12 @@ async function startCheckout(productId) {
     alert('Unable to connect to payment processor. Please try again.'); btn.textContent = original; btn.disabled = false;
   }
 }
+</script>
+<script type="module">
+import { initPCViewer } from './js/pc3d.js';
+initPCViewer('canvas-longhorn', 'longhorn');
+initPCViewer('canvas-capitol',  'capitol');
+initPCViewer('canvas-f1',       'f1');
 </script>
 </body>
 </html>
