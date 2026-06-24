@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom PC Builder Austin TX — Build Your Own Gaming PC | ATX Gaming PCs</title>
+<meta name="description" content="Design your own custom gaming PC with our interactive part picker. Choose your CPU, GPU, RAM, storage and more. We build and deliver to your door in Austin, TX.">
+<meta name="keywords" content="custom PC builder Austin TX, build your own gaming PC Austin, PC part picker Austin, custom gaming computer Austin Texas, gaming PC configurator Austin">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://atxgamingpcs.com/builder.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://atxgamingpcs.com/builder.html">
+<meta property="og:title" content="Custom PC Builder — Design Your Gaming PC | ATX Gaming PCs Austin">
+<meta property="og:description" content="Pick your parts, we check compatibility, then we build and deliver it to Austin TX. Starting at $99 labor.">
+<meta property="og:image" content="https://atxgamingpcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Custom PC Builder — ATX Gaming PCs Austin TX">
+<meta name="twitter:description" content="Interactive part picker. Real compatibility checks. Hand-built and delivered in Austin.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Custom Gaming PC Builder",
+  "provider": { "@type": "LocalBusiness", "name": "ATX Gaming PCs", "url": "https://atxgamingpcs.com" },
+  "description": "Interactive custom gaming PC configurator. Choose your parts, get a compatibility check, and we build and deliver to Austin TX.",
+  "areaServed": { "@type": "City", "name": "Austin" },
+  "url": "https://atxgamingpcs.com/builder.html",
+  "offers": { "@type": "Offer", "price": "99", "priceCurrency": "USD", "description": "Build labor starting at $99" }
+}
+</script>
+
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .builder-layout { display: grid; grid-template-columns: 1fr 380px; gap: 2rem; align-items: start; }
+  .parts-list { display: flex; flex-direction: column; gap: 1rem; }
+  .part-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 1rem 1.25rem; display: flex; align-items: center; gap: 1rem;
+    transition: border-color 0.25s, transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s;
+  }
+  .part-card:hover { border-color: var(--accent); transform: translateX(4px); box-shadow: -4px 0 0 0 var(--accent); }
+  .part-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--bg3); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+  .part-card:hover .part-icon { transform: scale(1.2) rotate(-5deg); }
+  .part-info { flex: 1; min-width: 0; }
+  .part-name { font-weight: 700; font-size: 0.9rem; margin-bottom: 2px; }
+  .part-select {
+    width: 100%; padding: 6px 28px 6px 10px; border-radius: 7px;
+    border: 1px solid var(--border2); background: var(--bg3); color: var(--text);
+    font-size: 0.82rem; cursor: pointer; outline: none; transition: border-color 0.2s;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 8px center;
+  }
+  .part-select:focus { border-color: var(--accent); }
+  .part-price { font-size: 0.95rem; font-weight: 700; color: var(--text); min-width: 60px; text-align: right; flex-shrink: 0; }
+  .build-summary { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; position: sticky; top: 90px; }
+  .summary-title { font-size: 1rem; font-weight: 700; margin-bottom: 1.25rem; }
+  .summary-rows { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1.25rem; }
+  .summary-row { display: flex; justify-content: space-between; font-size: 0.82rem; padding: 5px 0; border-bottom: 1px solid var(--border); }
+  .summary-row:last-child { border-bottom: none; }
+  .summary-label { color: var(--text2); }
+  .summary-val { font-weight: 600; font-size: 0.85rem; display: inline-block; transition: color 0.3s; }
+  .summary-val.updated { animation: countUp 0.35s cubic-bezier(0.34,1.56,0.64,1); }
+  .summary-total { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-top: 2px solid var(--border2); margin-bottom: 1rem; }
+  .total-label { font-weight: 700; font-size: 0.9rem; }
+  .total-price { font-size: 1.6rem; font-weight: 900; letter-spacing: -0.03em; color: var(--accent); }
+  .total-price.price-flash { animation: priceFlash 0.5s ease forwards; }
+  .compat-bar { background: var(--bg3); border-radius: 20px; height: 6px; margin-bottom: 0.4rem; overflow: hidden; }
+  .compat-fill { height: 100%; background: var(--green); border-radius: 20px; transition: width 0.4s ease; }
+  .compat-label { font-size: 0.75rem; color: var(--text3); margin-bottom: 0.5rem; }
+  .compat-issues { font-size: 0.78rem; color: var(--accent2); margin-bottom: 1rem; min-height: 1rem; white-space: pre-line; }
+
+  .steps-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
+  .step-card { text-align: center; padding: 1.5rem 1rem; background: var(--bg3); border: 1px solid var(--border); border-radius: 14px; }
+  .step-num { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 800; font-size: 1rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem; }
+  .step-title { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.35rem; }
+  .step-desc { font-size: 0.78rem; color: var(--text3); line-height: 1.5; }
+
+  @media (max-width: 960px) { .builder-layout { grid-template-columns: 1fr; } .build-summary { position: static; } .steps-grid { grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 768px) {
+    .part-card { flex-wrap: wrap; gap: 0.75rem; }
+    .part-info { width: 100%; order: 3; }
+    .part-icon { order: 1; }
+    .part-price { order: 2; margin-left: auto; }
+    .part-card:hover { transform: none; box-shadow: none; }
+    .steps-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) { .steps-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo"><div class="logo-icon">⚡</div>ATX<span>Gaming</span>PCs</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="prebuilt.html">Pre-Built</a></li>
+    <li><a href="builder.html">Build Your Own</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeToggle" title="Toggle theme">🌙</button>
+    <a href="prebuilt.html" class="btn btn-primary">Pre-Builts</a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html" class="mobile-link">Home</a>
+  <a href="prebuilt.html" class="mobile-link">Pre-Built Systems</a>
+  <a href="builder.html" class="mobile-link">Build Your Own</a>
+  <a href="contact.html" class="mobile-link">Contact</a>
+  <a href="contact.html" class="btn btn-primary btn-lg mobile-cta">Get a Quote ⚡</a>
+</div>
+
+<div class="page-hero">
+  <nav aria-label="Breadcrumb" class="breadcrumb">
+    <a href="index.html">Home</a><span>›</span><span>Build Your Own</span>
+  </nav>
+  <h1>Build Your Custom Gaming PC</h1>
+  <p>Pick your parts below. We check compatibility in real time, then hand-build and deliver it to you in Austin.</p>
+</div>
+
+<!-- HOW IT WORKS -->
+<section style="background:var(--bg2); padding:3rem 2rem;">
+  <div class="container">
+    <div class="steps-grid">
+      <div class="step-card reveal delay-1"><div class="step-num">1</div><div class="step-title">Pick Your Parts</div><div class="step-desc">Use the configurator below to select your CPU, GPU, RAM, storage, case, and more.</div></div>
+      <div class="step-card reveal delay-2"><div class="step-num">2</div><div class="step-title">Submit Your Build</div><div class="step-desc">Hit "Request This Build" and we'll send you a confirmed quote within a few hours.</div></div>
+      <div class="step-card reveal delay-3"><div class="step-num">3</div><div class="step-title">We Build It</div><div class="step-desc">Your rig is assembled, cable-managed, and stress-tested for 24 hours straight.</div></div>
+      <div class="step-card reveal delay-4"><div class="step-num">4</div><div class="step-title">We Deliver It</div><div class="step-desc">Free white-glove delivery to your door anywhere in Austin. We set it up on-site.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PART PICKER -->
+<section style="background:var(--bg);">
+  <div class="container">
+    <div class="section-label reveal">PC Part Picker</div>
+    <h2 class="section-title reveal delay-1">Configure Your Build</h2>
+    <p class="section-sub reveal delay-2">Compatibility is checked automatically. PSU wattage and CPU socket mismatches are flagged in real time.</p>
+    <div class="builder-layout">
+      <div class="parts-list reveal-left delay-2" id="partsList">
+
+        <div class="part-card">
+          <div class="part-icon">🔲</div>
+          <div class="part-info">
+            <div class="part-name">CPU (Processor)</div>
+            <select class="part-select" data-part="cpu" onchange="updateBuild()">
+              <option value="0" data-price="0">— Select a CPU —</option>
+              <option value="199" data-price="199" data-socket="AM5" data-tdp="65">AMD Ryzen 5 7600 — $199</option>
+              <option value="259" data-price="259" data-socket="AM5" data-tdp="65">AMD Ryzen 5 7600X — $259</option>
+              <option value="329" data-price="329" data-socket="AM5" data-tdp="65">AMD Ryzen 7 9700X — $329</option>
+              <option value="449" data-price="449" data-socket="AM5" data-tdp="105">AMD Ryzen 9 9900X — $449</option>
+              <option value="249" data-price="249" data-socket="LGA1700" data-tdp="125">Intel Core i5-14600K — $249</option>
+              <option value="389" data-price="389" data-socket="LGA1700" data-tdp="125">Intel Core i7-14700K — $389</option>
+              <option value="589" data-price="589" data-socket="LGA1700" data-tdp="253">Intel Core i9-14900K — $589</option>
+            </select>
+          </div>
+          <div class="part-price" id="price-cpu">—</div>
+        </div>
+
+        <div class="part-card">
+          <div class="part-icon">🧩</div>
+          <div class="part-info">
+            <div class="part-name">Motherboard</div>
+            <select class="part-select" data-part="mobo" onchange="updateBuild()">
+              <option value="0" data-price="0">— Select a Motherboard —</option>
+              <option value="129" data-price="129" data-socket="AM5">ASUS Prime B650-Plus (AM5) — $129</option>
+              <option value="179" data-price="179" data-socket="AM5">MSI MAG X670E (AM5) — $179</option>
+              <option value="299" data-price="299" data-socket="AM5">ASUS ROG Crosshair X670E (AM5) — $299</option>
+              <option value="149" data-price="149" data-socket="LGA1700">MSI PRO Z790-A (LGA1700) — $149</option>
+              <option value="229" data-price="229" data-socket="LGA1700">ASUS ROG Strix Z790-E (LGA1700) — $229</option>
+              <option value="349" data-price="349" data-socket="LGA1700">Gigabyte Z790 Aorus Master (LGA1700) — $349</option>
+            </select>
+          </div>
+          <div class="part-price" id="price-mobo">—</div>
+        </div>
+
+        <div class="part-card">
+          <div class="part-icon">💾</div>
+          <div class="part-info">
+            <div class="part-name">RAM (Memory)</div>
+            <select class="part-select" data-part="ram" onchange="updateBuild()">
+              <option value="0" data-price="0">— Select RAM —</option>
+              <option value="59" data-price="59">16GB DDR5-4800 (2×8GB) — $59</option>
+              <option value="89" data-price="89">32GB DDR5-6000 (2×16GB) — $89</option>
+              <option value="159" data-price="159">64GB DDR5-6000 (2×32GB) — $159</option>
+              <option value="229" data-price="229">64GB DDR5-7200 XMP3 (2×32GB) — $229</option>
+              <option value="349" data-price="349">128GB DDR5-6400 (4×32GB) — $349</option>
+            </select>
+          </div>
+          <div class="part-price" id="price-ram">—</div>
+        </div>
+
+        <div class="part-card">
+          <div class="part-icon">🎮</div>
+          <div class="part-info">
+            <div class="part-name">GPU (Graphics Card)</div>
+            <select class="part-select" data-part="gpu" onchange="updateBuild()">
+              <option value="0" data-price="0">— Select a GPU —</option>
+              <option value="299" data-price="299" data-watts="120">NVIDIA RTX 4060 8GB — $299</option>
+              <option value="399" data-price="399" data-watts="165">NVIDIA RTX 4060 Ti 16GB — $399</option>
+              <option value="599" data-price="599" data-watts="200">NVIDIA RTX 4070 Super 12GB — $599</option>
+              <option value="799" data-price="799" data-watts="285">NVIDIA RTX 4070 Ti Super 16GB — $799</option>
+              <option value="999" data-price="999" data-watts="320">NVIDIA RTX 4080 Super 16GB — $999</option>
+              <option value="1599" data-price="1599" data-watts="450">NVIDIA RTX 4090 24GB — $1,599</option>
+              <option value="479" data-price="479" data-watts="150">AMD RX 7700 XT 12GB — $479</option>
+              <option value="699" data-price="699" data-watts="190">AMD RX 7800 XT 16GB — $699</option>
+            </select>
+          </div>
+          <div class="part-price" id="price-gpu">—</div>
+        </div>
+
+        <div class="part-card">
+          <div class="part-icon">💿</div>
+          <div class="part-info">
+            <div class="part-name">Storage (SSD)</div>
+            <select class="part-select" data-part="ssd" onchange="updateBuild()">
+              <option value="0" data-price="0">— Select Storage —</option>
+              <option value="69" data-price="69">500GB WD Black SN770 PCIe 4.0 — $69</option>
+              <option value="89" data-price="89">1TB WD Black SN770 PCIe 4.0 — $89</option>
+              <option value="139" data-price="139">2TB Samsung 990 Pro PCIe 4.0 — $139</option>
+              <option value="189" data-price="189">2TB WD Black SN850X PCIe 4.0 — $189</option>
+              <option value="249" data-price="249">4TB Crucial T700 PCIe 5.0 — $249</option>
+              <option value="299" data-price="299">2TB Samsung 990 Pro + 2TB WD Blue HDD — $299</option>
+            </select>
+          </div>
+          <div class="part-price" id="price-ssd">—</div>
+        </div>
+
+        <div class="part-card">
+          <div class="part-icon">⚡</div>
+          <div class="part-info">
+            <div class="part-name">Power Supply (PSU)</div>
+            <select class="part-select" data-part="psu" onchange="updateBuild()">
+              <option value="0" data-price="0">— Select PSU —</option>
+              <option value="79" data-price="79" data-watts="650">EVGA 650W 80+ Bronze — $79</option>
+              <option value="109" data-price="109" data-watts="750">Corsair RM750x 80+ Gold — $109</option>
+              <option value="129" data-price="129" data-watts="850">Seasonic Focus GX-850 80+ Gold — $129</option>
+              <option value="169" data-price="169" data-watts="1000">be quiet! Dark Power 1000W Platinum — $169</option>
+              <option value="219" data-price="219" data-watts="1200">Corsair HX1200 80+ Platinum — $219</option>
+            </select>
+          </div>
+          <div class="part-price" id="price-psu">—</div>
+        </div>
+
+        <div class="part-card">
+          <div class="part-icon">🖥️</div>
+          <div class="part-info">
+            <div class="part-name">Case</div>
+            <select class="part-select" data-part="case" onchange="updateBuild()">
+              <option value="0" data-price="0">— Select a Case —</option>
+              <option value="79" data-price="79">Fractal Design Pop Mini (mATX) — $79</option>
+              <option value="109" data-price="109">Lian Li Lancool 216 (ATX) — $109</option>
+              <option value="129" data-price="129">Corsair 4000D Airflow (ATX) — $129</option>
+              <option value="169" data-price="169">Corsair 5000D Airflow (ATX) — $169</option>
+              <option value="199" data-price="199">Lian Li O11 Dynamic EVO (ATX) — $199</option>
+              <option value="249" data-price="249">Lian Li O11 XL (E-ATX) — $249</option>
+            </select>
+          </div>
+          <div class="part-price" id="price-case">—</div>
+        </div>
+
+        <div class="part-card">
+          <div class="part-icon">🌡️</div>
+          <div class="part-info">
+            <div class="part-name">CPU Cooler</div>
+            <select class="part-select" data-part="cooler" onchange="updateBuild()">
+              <option value="0" data-price="0">— Select CPU Cooler —</option>
+              <option value="39" data-price="39">Thermalright Peerless Assassin 120 (Air) — $39</option>
+              <option value="69" data-price="69">be quiet! Dark Rock 4 (Air) — $69</option>
+              <option value="89" data-price="89">Corsair H100i Elite 240mm AIO — $89</option>
+              <option value="119" data-price="119">NZXT Kraken 280mm AIO — $119</option>
+              <option value="169" data-price="169">Corsair H150i Elite 360mm AIO — $169</option>
+              <option value="399" data-price="399">Custom Hardline Loop (CPU+GPU) — $399</option>
+            </select>
+          </div>
+          <div class="part-price" id="price-cooler">—</div>
+        </div>
+
+        <div class="part-card" style="background:var(--bg3);">
+          <div class="part-icon">🛠️</div>
+          <div class="part-info">
+            <div class="part-name">ATX Build Labor + 24hr Stress Test</div>
+            <div style="font-size:0.8rem;color:var(--text3);margin-top:4px;">Professional assembly, cable management, Windows 11 install &amp; driver setup. Included with every build.</div>
+          </div>
+          <div class="part-price" style="color:var(--green)">$99</div>
+        </div>
+
+      </div>
+
+      <div class="build-summary reveal-right delay-3">
+        <div class="summary-title">Your Build Summary</div>
+        <div class="summary-rows">
+          <div class="summary-row"><span class="summary-label">CPU</span><span class="summary-val" id="s-cpu">—</span></div>
+          <div class="summary-row"><span class="summary-label">Motherboard</span><span class="summary-val" id="s-mobo">—</span></div>
+          <div class="summary-row"><span class="summary-label">RAM</span><span class="summary-val" id="s-ram">—</span></div>
+          <div class="summary-row"><span class="summary-label">GPU</span><span class="summary-val" id="s-gpu">—</span></div>
+          <div class="summary-row"><span class="summary-label">Storage</span><span class="summary-val" id="s-ssd">—</span></div>
+          <div class="summary-row"><span class="summary-label">PSU</span><span class="summary-val" id="s-psu">—</span></div>
+          <div class="summary-row"><span class="summary-label">Case</span><span class="summary-val" id="s-case">—</span></div>
+          <div class="summary-row"><span class="summary-label">Cooler</span><span class="summary-val" id="s-cooler">—</span></div>
+          <div class="summary-row"><span class="summary-label">Build Labor</span><span class="summary-val" style="color:var(--green)">$99</span></div>
+        </div>
+        <div class="compat-bar"><div class="compat-fill" id="compatFill" style="width:0%"></div></div>
+        <div class="compat-label" id="compatLabel">Select components to check compatibility</div>
+        <div class="compat-issues" id="compatIssues"></div>
+        <div class="summary-total">
+          <span class="total-label">Total</span>
+          <span class="total-price" id="totalPrice">$99</span>
+        </div>
+        <a href="contact.html" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;" id="buildOrderBtn">Request This Build</a>
+        <p style="font-size:0.75rem;color:var(--text3);text-align:center;margin-top:0.75rem;">Free delivery within Austin. 1-year parts warranty included.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><a href="index.html" class="logo" style="font-size:1.1rem;"><div class="logo-icon" style="width:30px;height:30px;font-size:0.9rem;">⚡</div>ATX<span>Gaming</span>PCs</a><p>Austin's locally-owned gaming PC builder. Hand-built, stress-tested, and delivered to your door.</p></div>
+    <div class="footer-col"><h4>Shop</h4><a href="prebuilt.html">The Longhorn</a><a href="prebuilt.html">The Capitol</a><a href="prebuilt.html">The F1</a><a href="builder.html">Build Your Own</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="index.html">Home</a><a href="contact.html">Contact Us</a></div>
+    <div class="footer-col"><h4>Austin</h4><a href="#">Free Citywide Delivery</a><a href="tel:+15125554263">(512) 555-GAME</a><a href="mailto:info@atxgamingpcs.com">info@atxgamingpcs.com</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 ATX Gaming PCs LLC. All rights reserved.</span><span>🤘 Made in Austin, TX</span></div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+const LABOR = 99;
+let lastTotal = 99;
+
+function getVal(sel) {
+  const opt = sel.options[sel.selectedIndex];
+  return {
+    price: parseInt(opt.dataset.price) || 0,
+    socket: opt.dataset.socket || null,
+    watts: parseInt(opt.dataset.watts) || 0,
+    tdp: parseInt(opt.dataset.tdp) || 0,
+    text: sel.value > 0 ? opt.text.split(' — ')[0] : null
+  };
+}
+
+function popVal(id, text) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = text;
+  el.classList.remove('updated');
+  void el.offsetWidth;
+  el.classList.add('updated');
+}
+
+function updateBuild() {
+  const selects = document.querySelectorAll('.part-select');
+  let total = LABOR, selected = 0;
+  const vals = {};
+
+  selects.forEach(sel => {
+    const part = sel.dataset.part;
+    const v = getVal(sel);
+    vals[part] = v;
+    document.getElementById('price-' + part).textContent = v.price > 0 ? '$' + v.price.toLocaleString() : '—';
+    popVal('s-' + part, v.text || '—');
+    if (v.price > 0) { total += v.price; selected++; }
+  });
+
+  const priceEl = document.getElementById('totalPrice');
+  priceEl.textContent = '$' + total.toLocaleString();
+  if (total !== lastTotal) {
+    priceEl.classList.remove('price-flash');
+    void priceEl.offsetWidth;
+    priceEl.classList.add('price-flash');
+    lastTotal = total;
+  }
+
+  const issues = [];
+  if (vals.cpu.socket && vals.mobo.socket && vals.cpu.socket !== vals.mobo.socket)
+    issues.push('⚠ CPU socket (' + vals.cpu.socket + ') does not match motherboard socket (' + vals.mobo.socket + ')');
+  const totalWatts = (vals.cpu.tdp || 0) + (vals.gpu.watts || 0) + 100;
+  if (vals.psu.watts > 0 && totalWatts > vals.psu.watts)
+    issues.push('⚠ PSU may be underpowered (est. ' + totalWatts + 'W, PSU is ' + vals.psu.watts + 'W)');
+
+  document.getElementById('compatIssues').textContent = issues.join('\n');
+  const pct = Math.min(100, Math.round((selected / 8) * 100));
+  const fill = document.getElementById('compatFill');
+  fill.style.width = pct + '%';
+  fill.style.background = issues.length ? 'var(--accent2)' : 'var(--green)';
+
+  const lbl = document.getElementById('compatLabel');
+  if (pct === 0) lbl.textContent = 'Select components to check compatibility';
+  else if (pct < 100) lbl.textContent = pct + '% complete — ' + (8 - selected) + ' part(s) remaining';
+  else if (issues.length) lbl.textContent = 'Build complete — compatibility issues detected';
+  else lbl.textContent = 'All parts selected — no compatibility issues ✓';
+
+  // Pass build summary to contact page via URL
+  const btn = document.getElementById('buildOrderBtn');
+  const parts = Array.from(selects).map(s => {
+    const v = getVal(s);
+    return v.text ? s.dataset.part.toUpperCase() + ': ' + v.text : null;
+  }).filter(Boolean).join(' | ');
+  btn.href = 'contact.html?build=custom&total=' + total + (parts ? '&parts=' + encodeURIComponent(parts) : '');
+}
+
+updateBuild();
+</script>
+</body>
+</html>

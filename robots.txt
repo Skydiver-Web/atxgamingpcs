@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://atxgamingpcs.com/sitemap.xml

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact ATX Gaming PCs — Order a Custom Gaming PC in Austin TX</title>
+<meta name="description" content="Order a custom gaming PC or pre-built system from ATX Gaming PCs in Austin, TX. Free delivery citywide. Response within a few hours. Call (512) 555-GAME.">
+<meta name="keywords" content="contact ATX Gaming PCs, order gaming PC Austin TX, gaming PC delivery Austin, custom PC quote Austin Texas">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://atxgamingpcs.com/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://atxgamingpcs.com/contact.html">
+<meta property="og:title" content="Contact ATX Gaming PCs — Austin TX Gaming PC Orders">
+<meta property="og:description" content="Order a gaming PC, get a custom quote, or ask us anything. Free delivery across Austin. Response within hours.">
+<meta property="og:image" content="https://atxgamingpcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contact ATX Gaming PCs — Austin TX">
+<meta name="twitter:description" content="Order a gaming PC or get a custom quote. Free Austin delivery. Real humans answer.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact ATX Gaming PCs",
+  "url": "https://atxgamingpcs.com/contact.html",
+  "mainEntity": {
+    "@type": "LocalBusiness",
+    "name": "ATX Gaming PCs",
+    "telephone": "+1-512-555-4263",
+    "email": "info@atxgamingpcs.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Austin",
+      "addressRegion": "TX",
+      "postalCode": "78701",
+      "addressCountry": "US"
+    },
+    "openingHours": "Mo-Sa 09:00-18:00",
+    "areaServed": [
+      "Austin TX", "Round Rock TX", "Cedar Park TX", "Pflugerville TX",
+      "Georgetown TX", "Kyle TX", "Buda TX", "Manor TX", "Leander TX"
+    ]
+  }
+}
+</script>
+
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .contact-layout { display: grid; grid-template-columns: 1fr 380px; gap: 2.5rem; align-items: start; }
+  .form-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 2rem;
+    display: flex; flex-direction: column; gap: 1.1rem;
+  }
+  .field-group { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  label { font-size: 0.8rem; font-weight: 600; color: var(--text2); display: block; margin-bottom: 6px; }
+  input[type=text], input[type=email], input[type=tel], select, textarea {
+    width: 100%; padding: 10px 12px; border: 1px solid var(--border2); border-radius: 8px;
+    background: var(--bg3); color: var(--text); font-size: 0.9rem; outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+  textarea { resize: vertical; min-height: 120px; }
+  .info-stack { display: flex; flex-direction: column; gap: 1rem; position: sticky; top: 90px; }
+  .info-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.25rem 1.5rem; }
+  .info-card h3 { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text); }
+  .info-row { display: flex; align-items: flex-start; gap: 10px; font-size: 0.85rem; color: var(--text2); margin-bottom: 0.6rem; }
+  .info-row:last-child { margin-bottom: 0; }
+  .info-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+  .info-row a { color: var(--accent); text-decoration: none; }
+  .info-row a:hover { text-decoration: underline; }
+  .hours-row { display: flex; justify-content: space-between; font-size: 0.82rem; padding: 5px 0; border-bottom: 1px solid var(--border); color: var(--text2); }
+  .hours-row:last-child { border-bottom: none; }
+  .hours-row .day { color: var(--text3); }
+  .zone-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.5rem; }
+  .zone-tag { background: var(--bg3); border: 1px solid var(--border); border-radius: 20px; padding: 3px 10px; font-size: 0.75rem; color: var(--text2); }
+  .faq-list { display: flex; flex-direction: column; gap: 0; }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q {
+    width: 100%; background: none; border: none; color: var(--text); font-size: 0.9rem;
+    font-weight: 600; text-align: left; padding: 1rem 0; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    transition: color 0.2s; font-family: inherit;
+  }
+  .faq-q:hover { color: var(--accent); }
+  .faq-arrow { font-size: 0.8rem; color: var(--text3); transition: transform 0.3s ease; flex-shrink: 0; }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+  .faq-a { font-size: 0.85rem; color: var(--text2); line-height: 1.65; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease; }
+  .faq-item.open .faq-a { max-height: 200px; padding-bottom: 1rem; }
+  #formMsg { display: none; padding: 10px 14px; border-radius: 8px; font-size: 0.85rem; margin-top: 0.25rem; }
+
+  @media (max-width: 900px) { .contact-layout { grid-template-columns: 1fr; } .info-stack { position: static; } }
+  @media (max-width: 600px) { .field-group { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo"><div class="logo-icon">⚡</div>ATX<span>Gaming</span>PCs</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="prebuilt.html">Pre-Built</a></li>
+    <li><a href="builder.html">Build Your Own</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeToggle" title="Toggle theme">🌙</button>
+    <a href="prebuilt.html" class="btn btn-primary">Shop Now</a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html" class="mobile-link">Home</a>
+  <a href="prebuilt.html" class="mobile-link">Pre-Built Systems</a>
+  <a href="builder.html" class="mobile-link">Build Your Own</a>
+  <a href="contact.html" class="mobile-link">Contact</a>
+  <a href="prebuilt.html" class="btn btn-primary btn-lg mobile-cta">Shop Now ⚡</a>
+</div>
+
+<div class="page-hero">
+  <nav aria-label="Breadcrumb" class="breadcrumb">
+    <a href="index.html">Home</a><span>›</span><span>Contact</span>
+  </nav>
+  <h1>Let's Build Your PC</h1>
+  <p>Fill out the form and we'll get back to you within a few hours with a quote and delivery window.</p>
+</div>
+
+<section style="background:var(--bg);">
+  <div class="container">
+    <div class="contact-layout">
+
+      <!-- FORM -->
+      <div class="reveal-left">
+        <div class="section-label">Order Form</div>
+        <h2 class="section-title" style="margin-bottom:1.5rem;">Place Your Order</h2>
+        <form class="form-card" id="orderForm" onsubmit="submitForm(event)" novalidate>
+          <div class="field-group">
+            <div>
+              <label for="fname">First Name *</label>
+              <input type="text" id="fname" placeholder="Jane" required>
+            </div>
+            <div>
+              <label for="lname">Last Name *</label>
+              <input type="text" id="lname" placeholder="Doe" required>
+            </div>
+          </div>
+          <div>
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" placeholder="jane@example.com" required>
+          </div>
+          <div>
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="(512) 555-0100">
+          </div>
+          <div>
+            <label for="interest">I'm Interested In *</label>
+            <select id="interest" required>
+              <option value="">— Select an option —</option>
+              <option value="longhorn">Pre-Built — The Longhorn ($849)</option>
+              <option value="capitol">Pre-Built — The Capitol ($1,549)</option>
+              <option value="f1">Pre-Built — The F1 ($2,799)</option>
+              <option value="custom">Custom Build (Part Picker)</option>
+              <option value="advice">Just browsing / need advice</option>
+            </select>
+          </div>
+          <div>
+            <label for="zip">Austin Delivery Zip Code</label>
+            <input type="text" id="zip" placeholder="78701" maxlength="5" pattern="[0-9]{5}">
+          </div>
+          <div>
+            <label for="msg">Message / Custom Specs</label>
+            <textarea id="msg" placeholder="Tell us your budget, what games you play, or paste your custom build specs..."></textarea>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+            <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">Send My Order Request ⚡</button>
+            <span style="font-size:0.78rem;color:var(--text3);">We respond within a few hours</span>
+          </div>
+          <div id="formMsg"></div>
+        </form>
+      </div>
+
+      <!-- INFO SIDEBAR -->
+      <div class="info-stack reveal-right delay-2">
+
+        <div class="info-card">
+          <h3>📞 Get In Touch</h3>
+          <div class="info-row"><span class="info-icon">📱</span><div><strong>Call or Text</strong><br><a href="tel:+15125554263">(512) 555-GAME</a></div></div>
+          <div class="info-row"><span class="info-icon">✉️</span><div><strong>Email</strong><br><a href="mailto:info@atxgamingpcs.com">info@atxgamingpcs.com</a></div></div>
+          <div class="info-row"><span class="info-icon">📍</span><div><strong>Location</strong><br>Austin, TX 78701<br><span style="font-size:0.78rem;color:var(--text3);">By appointment — we come to you</span></div></div>
+        </div>
+
+        <div class="info-card">
+          <h3>🕐 Business Hours</h3>
+          <div class="hours-row"><span class="day">Monday – Friday</span><span>9am – 6pm</span></div>
+          <div class="hours-row"><span class="day">Saturday</span><span>10am – 4pm</span></div>
+          <div class="hours-row"><span class="day">Sunday</span><span style="color:var(--text3)">Closed</span></div>
+          <p style="font-size:0.75rem;color:var(--text3);margin-top:0.75rem;">Rush builds available outside business hours for an additional fee. Text us anytime.</p>
+        </div>
+
+        <div class="info-card">
+          <h3>🚚 Delivery Areas</h3>
+          <p style="font-size:0.82rem;color:var(--text2);margin-bottom:0.5rem;">We deliver free to all of these areas and more:</p>
+          <div class="zone-tags">
+            <span class="zone-tag">Austin</span>
+            <span class="zone-tag">Round Rock</span>
+            <span class="zone-tag">Cedar Park</span>
+            <span class="zone-tag">Pflugerville</span>
+            <span class="zone-tag">Georgetown</span>
+            <span class="zone-tag">Kyle</span>
+            <span class="zone-tag">Buda</span>
+            <span class="zone-tag">Manor</span>
+            <span class="zone-tag">Leander</span>
+            <span class="zone-tag">Hutto</span>
+            <span class="zone-tag">Lakeway</span>
+            <span class="zone-tag">Bee Cave</span>
+          </div>
+          <p style="font-size:0.75rem;color:var(--text3);margin-top:0.75rem;">Outside this area? Contact us — we may still be able to help for a small delivery fee.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:var(--bg2);">
+  <div class="container" style="max-width:760px;">
+    <div class="section-label reveal">FAQ</div>
+    <h2 class="section-title reveal delay-1">Common Questions</h2>
+    <div class="faq-list reveal delay-2">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How long does a custom build take? <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">Most builds are completed within 48 hours of order confirmation and payment. Rush builds (24-hour turnaround) are available for an additional $75. Complex liquid cooling builds may take up to 72 hours.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do you offer financing or payment plans? <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">We accept all major credit cards, PayPal, Venmo, Cash App, and cash. We're currently exploring buy-now-pay-later options — reach out to discuss what works for you.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What does the 1-year warranty cover? <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">Our warranty covers any defective component and all build labor for 12 months. If something fails, we come to you, diagnose the issue, and replace the faulty part at no cost. This is in addition to individual manufacturer warranties on components.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I upgrade my PC after purchase? <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">Absolutely. We offer upgrade services — swap a GPU, add more RAM or storage, or move to a new case. Labor starts at $49. Contact us with what you'd like to upgrade and we'll give you a quote.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do you ship outside of Austin? <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">Our free delivery covers the greater Austin metro area. For longer distances within Texas we can arrange freight shipping with proper packaging. Contact us for a shipping quote to your location.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I bring in my existing PC for upgrades or repairs? <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">Yes — we do repairs and upgrades on existing systems too, not just new builds. Diagnostic fee is $49 (waived if you proceed with a repair). We can come to you or you can drop it off by appointment.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><a href="index.html" class="logo" style="font-size:1.1rem;"><div class="logo-icon" style="width:30px;height:30px;font-size:0.9rem;">⚡</div>ATX<span>Gaming</span>PCs</a><p>Austin's locally-owned gaming PC builder. Hand-built, stress-tested, and delivered to your door.</p></div>
+    <div class="footer-col"><h4>Shop</h4><a href="prebuilt.html">The Longhorn</a><a href="prebuilt.html">The Capitol</a><a href="prebuilt.html">The F1</a><a href="builder.html">Build Your Own</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="index.html">Home</a><a href="contact.html">Contact Us</a></div>
+    <div class="footer-col"><h4>Austin</h4><a href="#">Free Citywide Delivery</a><a href="tel:+15125554263">(512) 555-GAME</a><a href="mailto:info@atxgamingpcs.com">info@atxgamingpcs.com</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 ATX Gaming PCs LLC. All rights reserved.</span><span>🤘 Made in Austin, TX</span></div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+// Pre-fill form from URL params (from builder.html)
+const params = new URLSearchParams(window.location.search);
+const buildParam = params.get('build');
+const partsParam = params.get('parts');
+const totalParam = params.get('total');
+if (buildParam) {
+  const map = { longhorn: 'longhorn', capitol: 'capitol', f1: 'f1', custom: 'custom' };
+  const sel = document.getElementById('interest');
+  if (sel && map[buildParam]) sel.value = map[buildParam];
+}
+if (partsParam || totalParam) {
+  const msg = document.getElementById('msg');
+  if (msg) {
+    let prefill = '';
+    if (partsParam) prefill += 'Custom build:\n' + decodeURIComponent(partsParam).replace(/\|/g, '\n') + '\n';
+    if (totalParam) prefill += 'Estimated total: $' + parseInt(totalParam).toLocaleString();
+    msg.value = prefill.trim();
+  }
+}
+
+function submitForm(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  const msg = document.getElementById('formMsg');
+  const email = document.getElementById('email').value;
+  const fname = document.getElementById('fname').value;
+  const interest = document.getElementById('interest').value;
+  if (!fname || !email || !interest) {
+    msg.style.display = 'block';
+    msg.style.background = 'rgba(232,65,24,0.1)';
+    msg.style.border = '1px solid rgba(232,65,24,0.3)';
+    msg.style.color = 'var(--accent2)';
+    msg.textContent = 'Please fill in all required fields.';
+    return;
+  }
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+  setTimeout(() => {
+    msg.style.display = 'block';
+    msg.style.background = 'rgba(0,201,107,0.1)';
+    msg.style.border = '1px solid rgba(0,201,107,0.3)';
+    msg.style.color = 'var(--green)';
+    msg.textContent = '✓ Request received! We\'ll reach out to ' + email + ' within a few hours to confirm your order and delivery window.';
+    btn.textContent = 'Request Sent ✓';
+    btn.style.background = 'var(--green)';
+  }, 1200);
+}
+
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>
