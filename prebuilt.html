@@ -149,7 +149,7 @@
           <div class="tier-spec-row"><div class="spec-icon">🌡️</div><div class="spec-info"><div class="spec-label">240mm AIO Cooler</div><div class="spec-detail">Quiet, handles Austin summers</div></div></div>
           <div class="tier-spec-row"><div class="spec-icon">🪟</div><div class="spec-info"><div class="spec-label">Windows 11 Home</div><div class="spec-detail">Pre-installed, drivers configured</div></div></div>
         </div>
-        <div class="tier-footer"><a href="contact.html?build=longhorn" class="btn btn-ghost" style="width:100%;justify-content:center;">Order The Longhorn</a></div>
+        <div class="tier-footer"><button onclick="startCheckout('longhorn')" class="btn btn-ghost" style="width:100%;justify-content:center;">Order The Longhorn</button></div>
       </div>
 
       <div class="pc-tier featured reveal delay-2">
@@ -165,7 +165,7 @@
           <div class="tier-spec-row"><div class="spec-icon">🌡️</div><div class="spec-info"><div class="spec-label">360mm AIO Cooler</div><div class="spec-detail">RGB, Low-Noise Optimized</div></div></div>
           <div class="tier-spec-row"><div class="spec-icon">🪟</div><div class="spec-info"><div class="spec-label">Windows 11 Home</div><div class="spec-detail">Pre-installed, drivers configured</div></div></div>
         </div>
-        <div class="tier-footer"><a href="contact.html?build=capitol" class="btn btn-primary" style="width:100%;justify-content:center;">Order The Capitol</a></div>
+        <div class="tier-footer"><button onclick="startCheckout('capitol')" class="btn btn-primary" style="width:100%;justify-content:center;">Order The Capitol</button></div>
       </div>
 
       <div class="pc-tier reveal delay-3">
@@ -181,7 +181,7 @@
           <div class="tier-spec-row"><div class="spec-icon">🌡️</div><div class="spec-info"><div class="spec-label">Custom Loop Liquid Cooling</div><div class="spec-detail">CPU + GPU, Hardline Optional</div></div></div>
           <div class="tier-spec-row"><div class="spec-icon">🪟</div><div class="spec-info"><div class="spec-label">Windows 11 Pro</div><div class="spec-detail">Pre-installed, fully activated</div></div></div>
         </div>
-        <div class="tier-footer"><a href="contact.html?build=f1" class="btn btn-ghost" style="width:100%;justify-content:center;">Order The F1</a></div>
+        <div class="tier-footer"><button onclick="startCheckout('f1')" class="btn btn-ghost" style="width:100%;justify-content:center;">Order The F1</button></div>
       </div>
     </div>
   </div>
@@ -254,5 +254,25 @@
   <div class="footer-bottom"><span>© 2025 ATX Gaming PCs LLC. All rights reserved.</span><span>🤘 Made in Austin, TX</span></div>
 </footer>
 <script src="js/main.js"></script>
+<script>
+async function startCheckout(productId) {
+  const btn = event.currentTarget;
+  const original = btn.textContent;
+  btn.textContent = 'Redirecting…';
+  btn.disabled = true;
+  try {
+    const res = await fetch('/api/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ productId })
+    });
+    const data = await res.json();
+    if (data.url) { window.location.href = data.url; }
+    else { alert(data.error || 'Something went wrong. Please try again.'); btn.textContent = original; btn.disabled = false; }
+  } catch (e) {
+    alert('Unable to connect to payment processor. Please try again.'); btn.textContent = original; btn.disabled = false;
+  }
+}
+</script>
 </body>
 </html>

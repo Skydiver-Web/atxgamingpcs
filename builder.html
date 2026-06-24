@@ -316,7 +316,7 @@
           <span class="total-label">Total</span>
           <span class="total-price" id="totalPrice">$99</span>
         </div>
-        <a href="contact.html" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;" id="buildOrderBtn">Request This Build</a>
+        <button onclick="startCustomCheckout()" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;" id="buildOrderBtn">Request This Build</button>
         <p style="font-size:0.75rem;color:var(--text3);text-align:center;margin-top:0.75rem;">Free delivery within Austin. 1-year parts warranty included.</p>
       </div>
     </div>
@@ -410,6 +410,42 @@ function updateBuild() {
 }
 
 updateBuild();
+
+async function startCustomCheckout() {
+  const btn = document.getElementById('buildOrderBtn');
+  const selects = document.querySelectorAll('.part-select');
+  const parts = Array.from(selects).map(s => {
+    const opt = s.options[s.selectedIndex];
+    const price = parseInt(opt.dataset.price) || 0;
+    return price > 0 ? s.dataset.part.toUpperCase() + ': ' + opt.text.split(' — ')[0] : null;
+  }).filter(Boolean);
+
+  if (parts.length < 4) {
+    alert('Please select at least CPU, GPU, RAM, and Storage before checking out.');
+    return;
+  }
+
+  const original = btn.textContent;
+  btn.textContent = 'Redirecting…';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('/api/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        productId: 'custom',
+        customTotal: lastTotal,
+        customParts: parts.join(' | ')
+      })
+    });
+    const data = await res.json();
+    if (data.url) { window.location.href = data.url; }
+    else { alert(data.error || 'Something went wrong. Please try again.'); btn.textContent = original; btn.disabled = false; }
+  } catch (e) {
+    alert('Unable to connect to payment processor. Please try again.'); btn.textContent = original; btn.disabled = false;
+  }
+}
 </script>
 </body>
 </html>

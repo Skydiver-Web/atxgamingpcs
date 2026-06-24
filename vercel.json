@@ -24,9 +24,11 @@
     }
   ],
   "routes": [
+    { "src": "/api/checkout", "dest": "/api/checkout.js" },
     { "src": "/prebuilt", "dest": "/prebuilt.html" },
     { "src": "/builder", "dest": "/builder.html" },
     { "src": "/contact", "dest": "/contact.html" },
+    { "src": "/success", "dest": "/success.html" },
     { "src": "/(.*)", "dest": "/$1" }
   ]
 }

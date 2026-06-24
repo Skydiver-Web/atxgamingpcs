@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Confirmed — ATX Gaming PCs</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://atxgamingpcs.com/success.html">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .success-page {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    padding: calc(var(--nav-h) + 2rem) 1.5rem 4rem;
+    background: var(--bg);
+  }
+  .success-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 20px;
+    padding: 3rem 2.5rem; max-width: 520px; width: 100%; text-align: center;
+    position: relative; overflow: hidden;
+    animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  .success-card::before {
+    content: ''; position: absolute; top: -1px; left: 20px; right: 20px; height: 3px;
+    background: linear-gradient(90deg, transparent, var(--green), transparent);
+  }
+  .success-icon {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: rgba(0,201,107,0.15); border: 2px solid var(--green);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; margin: 0 auto 1.5rem;
+    animation: float 3s ease-in-out infinite;
+  }
+  .success-card h1 { font-size: 1.8rem; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.75rem; }
+  .success-card p { color: var(--text2); font-size: 0.95rem; line-height: 1.65; margin-bottom: 0.5rem; }
+  .success-steps { background: var(--bg3); border-radius: 12px; padding: 1.25rem; margin: 1.5rem 0; text-align: left; }
+  .success-steps h3 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); margin-bottom: 0.75rem; }
+  .step-row { display: flex; align-items: flex-start; gap: 10px; font-size: 0.85rem; color: var(--text2); margin-bottom: 0.6rem; }
+  .step-row:last-child { margin-bottom: 0; }
+  .step-row .num { width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 0.7rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .order-ref { font-size: 0.75rem; color: var(--text3); margin-top: 1.5rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo"><div class="logo-icon">⚡</div>ATX<span>Gaming</span>PCs</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="prebuilt.html">Pre-Built</a></li>
+    <li><a href="builder.html">Build Your Own</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeToggle" title="Toggle theme">🌙</button>
+  </div>
+</nav>
+
+<div class="success-page">
+  <div class="success-card">
+    <div class="success-icon">✓</div>
+    <h1>Order Confirmed!</h1>
+    <p>Payment received — your build is in the queue. You'll get an email confirmation shortly.</p>
+    <div class="success-steps">
+      <h3>What happens next</h3>
+      <div class="step-row"><div class="num">1</div><div>We'll reach out within a few hours to confirm your delivery address and window.</div></div>
+      <div class="step-row"><div class="num">2</div><div>Your rig is assembled and stress-tested for 24 hours straight.</div></div>
+      <div class="step-row"><div class="num">3</div><div>We deliver to your door and set it up on-site — usually within 48 hours.</div></div>
+    </div>
+    <p>Questions? Call or text us at <a href="tel:+15125554263" style="color:var(--accent);font-weight:600;">(512) 555-GAME</a></p>
+    <div style="display:flex;gap:0.75rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap;">
+      <a href="index.html" class="btn btn-primary">Back to Home</a>
+      <a href="contact.html" class="btn btn-ghost">Contact Us</a>
+    </div>
+    <p class="order-ref" id="orderRef"></p>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+const params = new URLSearchParams(window.location.search);
+const sessionId = params.get('session_id');
+if (sessionId) {
+  document.getElementById('orderRef').textContent = 'Order reference: ' + sessionId.slice(-12).toUpperCase();
+}
+</script>
+</body>
+</html>
