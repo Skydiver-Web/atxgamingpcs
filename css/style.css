@@ -266,16 +266,6 @@ footer { background: var(--bg); border-top: 1px solid var(--border); padding: 3r
 }
 .page-hero h1 { font-family: 'Rajdhani', sans-serif; font-size: clamp(2.2rem,4.5vw,3.4rem); font-weight: 700; letter-spacing: 0.04em; margin-bottom: 0.75rem; animation: fadeUp 0.7s 0.1s cubic-bezier(0.16,1,0.3,1) both; }
 
-/* PC SHOWCASE */
-.showcase-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
-.showcase-card { background: var(--bg); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; transition: border-color 0.3s, transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s; }
-.showcase-card:hover { border-color: var(--border2); transform: translateY(-8px); box-shadow: 0 24px 48px rgba(0,0,0,0.35); }
-.showcase-header { padding: 1rem 1.25rem 0.5rem; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border); }
-.showcase-badge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 2px 8px; border-radius: 20px; }
-.showcase-name { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.05rem; letter-spacing: 0.04em; }
-.showcase-render { padding: 1.5rem; display: flex; justify-content: center; align-items: center; background: radial-gradient(ellipse 60% 50% at 50% 60%, rgba(232,65,24,0.04), transparent 70%); }
-.showcase-label { text-align: center; font-size: 0.75rem; color: var(--text3); letter-spacing: 0.06em; padding: 0.5rem 1rem 1rem; }
-@media (max-width: 900px) { .showcase-grid { grid-template-columns: 1fr; } }
 .page-hero p { color: var(--text2); font-size: 1.05rem; max-width: 540px; margin: 0 auto; animation: fadeUp 0.7s 0.25s cubic-bezier(0.16,1,0.3,1) both; }
 .breadcrumb { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 0.78rem; color: var(--text3); margin-bottom: 1rem; animation: fadeUp 0.6s 0.05s cubic-bezier(0.16,1,0.3,1) both; }
 .breadcrumb a { color: var(--text3); text-decoration: none; transition: color 0.2s; }
