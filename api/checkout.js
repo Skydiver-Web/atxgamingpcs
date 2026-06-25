@@ -4,20 +4,20 @@ const Stripe = require('stripe');
 const PRODUCTS = {
   longhorn: {
     name: 'The Longhorn — Entry Gaming PC',
-    description: 'AMD Ryzen 5 7600 · RTX 4060 8GB · 16GB DDR5 · 1TB NVMe · Free Austin Delivery',
-    amount: 84900, // $849.00
+    description: 'AMD Ryzen 5 9600X · RTX 4060 Ti 16GB · 16GB DDR5-5600 · 1TB NVMe · Free Austin Delivery',
+    amount: 114900, // $1,149.00
     images: ['https://atxgamingpcs.com/og-image.jpg'],
   },
   capitol: {
     name: 'The Capitol — Mid-Range Gaming PC',
-    description: 'AMD Ryzen 7 9700X · RTX 4070 Super 12GB · 32GB DDR5-6000 · 2TB NVMe · Free Austin Delivery',
-    amount: 154900, // $1,549.00
+    description: 'AMD Ryzen 7 9800X3D · RTX 4070 Ti Super 16GB · 32GB DDR5-6000 · 2TB NVMe · Free Austin Delivery',
+    amount: 219900, // $2,199.00
     images: ['https://atxgamingpcs.com/og-image.jpg'],
   },
   f1: {
     name: 'The F1 — High-End Gaming PC',
-    description: 'Intel i9-14900K · RTX 4090 24GB · 64GB DDR5-7200 · 4TB NVMe ×2 · Free Austin Delivery',
-    amount: 279900, // $2,799.00
+    description: 'AMD Ryzen 9 9950X · RTX 4090 24GB · 64GB DDR5-6400 · 2TB PCIe 5.0 NVMe ×2 · Free Austin Delivery',
+    amount: 429900, // $4,299.00
     images: ['https://atxgamingpcs.com/og-image.jpg'],
   },
 };
