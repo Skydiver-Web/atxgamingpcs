@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&family=JetBrains+Mono:wght@400;600&display=swap');
 
 /* ATX Gaming PCs — Shared Stylesheet */
 :root {
@@ -19,7 +19,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'Rajdhani', system-ui, sans-serif;
   background: var(--bg); color: var(--text); line-height: 1.6;
   transition: background 0.3s, color 0.3s;
 }
@@ -69,8 +69,8 @@ nav {
 }
 .logo:hover .logo-mark { transform: scale(1.12) rotate(8deg); }
 .logo-text { display: flex; flex-direction: column; line-height: 1; gap: 2px; }
-.logo-atx { font-family: 'Press Start 2P', monospace; font-size: 0.65rem; font-weight: 400; letter-spacing: 0.04em; color: var(--text); line-height: 1.6; }
-.logo-tagline { font-family: 'Share Tech Mono', monospace; font-size: 0.6rem; font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); }
+.logo-atx { font-family: 'Orbitron', monospace; font-size: 1.0rem; font-weight: 900; letter-spacing: 0.05em; color: var(--text); }
+.logo-tagline { font-family: 'Rajdhani', sans-serif; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); }
 .logo-sm .logo-mark { width: 28px; height: 31px; }
 .logo-sm .logo-atx { font-size: 0.88rem; }
 .nav-links { display: flex; align-items: center; gap: 1.5rem; list-style: none; }
@@ -129,9 +129,9 @@ section { padding: 5rem 2rem; }
   color: var(--accent); margin-bottom: 0.5rem;
 }
 h2.section-title {
-  font-family: 'Press Start 2P', monospace;
-  font-size: clamp(0.85rem,1.6vw,1.25rem); font-weight: 400; letter-spacing: 0.02em; line-height: 1.7;
-  color: var(--text); margin-bottom: 1rem; cursor: default;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(2rem,3.2vw,2.9rem); font-weight: 700; letter-spacing: 0.03em;
+  color: var(--text); margin-bottom: 0.75rem; cursor: default;
 }
 .section-sub { color: var(--text2); font-size: 1.05rem; margin-bottom: 3rem; max-width: 540px; }
 
@@ -156,7 +156,7 @@ h2.section-title {
 .badge-entry { background: rgba(0,201,107,0.15); color: var(--green); }
 .badge-mid { background: rgba(59,130,246,0.15); color: var(--blue); }
 .badge-pro { background: rgba(232,65,24,0.15); color: var(--accent2); }
-.tier-name { font-family: 'Press Start 2P', monospace; font-size: 0.72rem; font-weight: 400; letter-spacing: 0.02em; line-height: 1.8; margin-bottom: 0.5rem; }
+.tier-name { font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
 .tier-sub { font-size: 0.82rem; color: var(--text3); }
 .tier-price { font-family: 'Orbitron', monospace; font-size: 1.9rem; font-weight: 900; letter-spacing: -0.02em; color: var(--text); padding: 0 1.5rem 1rem; }
 .tier-price sup { font-family: 'DM Sans', sans-serif; font-size: 1rem; vertical-align: top; margin-top: 8px; color: var(--text2); }
@@ -264,7 +264,7 @@ footer { background: var(--bg); border-top: 1px solid var(--border); padding: 3r
   background: var(--bg2); border-bottom: 1px solid var(--border);
   text-align: center;
 }
-.page-hero h1 { font-family: 'Press Start 2P', monospace; font-size: clamp(0.9rem,2vw,1.5rem); font-weight: 400; letter-spacing: 0.02em; line-height: 1.7; margin-bottom: 0.75rem; animation: fadeUp 0.7s 0.1s cubic-bezier(0.16,1,0.3,1) both; }
+.page-hero h1 { font-family: 'Rajdhani', sans-serif; font-size: clamp(2.2rem,4.5vw,3.4rem); font-weight: 700; letter-spacing: 0.04em; margin-bottom: 0.75rem; animation: fadeUp 0.7s 0.1s cubic-bezier(0.16,1,0.3,1) both; }
 
 .page-hero p { color: var(--text2); font-size: 1.05rem; max-width: 540px; margin: 0 auto; animation: fadeUp 0.7s 0.25s cubic-bezier(0.16,1,0.3,1) both; }
 .breadcrumb { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 0.78rem; color: var(--text3); margin-bottom: 1rem; animation: fadeUp 0.6s 0.05s cubic-bezier(0.16,1,0.3,1) both; }
